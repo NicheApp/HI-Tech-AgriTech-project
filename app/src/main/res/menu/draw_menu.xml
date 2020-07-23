@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+   >
+
+    <group android:checkableBehavior="single"
+        >
+
+        <item android:id="@+id/index"
+
+            android:title="MY INDEX/सूची"
+
+            />
+
+        
+        <item android:id="@+id/faq"
+
+            android:title="FAQ/सामान्य प्रश्न"/>
+        <item android:id="@+id/help"
+
+        android:title="ASK FOR HELP/तकनीकी मदद"/>
+        <item android:id="@+id/logout"
+
+            android:title="LOG OUT/लॉग आउट"/>
+
+
+
+    </group>
+</menu>

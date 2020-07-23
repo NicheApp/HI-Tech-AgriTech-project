@@ -9,13 +9,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -23,12 +30,20 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText name, age, phone, trds ;
     String username, userage, userphone, usertrds;
     Boolean CheckEditText ;
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
     public  static ProgressBar progressBar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         name = (EditText)findViewById(R.id.name);
         age = (EditText)findViewById(R.id.age);
@@ -36,6 +51,39 @@ public class RegistrationActivity extends AppCompatActivity {
         trds = (EditText)findViewById(R.id.trds);
       progressBar2=findViewById(R.id.progressBar2);
        register=findViewById(R.id.register);
+        dl = (DrawerLayout)findViewById(R.id.drawer_layout);
+        t = new ActionBarDrawerToggle(this, dl,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        dl.addDrawerListener(t);
+        t.syncState();
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = (NavigationView)findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.index:
+                        Toast.makeText(RegistrationActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                    case R.id.help:
+                        Toast.makeText(RegistrationActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                    case R.id.logout:
+                        Toast.makeText(RegistrationActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    default:
+                        return true;
+                }
+
+
+                return true;
+
+            }
+        });
+
+
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +149,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
