@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="170dp"
+    app:cardPreventCornerOverlap="false"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp">
+
+
+        <TextView
+            android:id="@+id/farmername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mahesh mahato"
+
+            android:textColor="#202020"
+             android:layout_marginTop="2dp"
+            android:layout_marginLeft="2dp"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+
+            android:layout_marginTop="40dp"
+
+            app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+        <TextView
+            android:id="@+id/farmerno."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+              android:layout_marginLeft="40dp"
+
+
+            android:text="5356356455" />
+
+        <TextView
+            android:id="@+id/farmeradd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="2dp"
+
+
+            android:text="jamshedpur" />
+
+        <Button
+            android:id="@+id/baseline"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="100dp"
+           android:text="BASELINE"
+            android:layout_marginLeft="1dp"
+
+            android:background="@color/lightmaincolor"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/intervention"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="120dp"
+
+
+
+
+
+            android:text="INTERVENTION"
+            android:background="@color/lightmaincolor"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"></Button>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

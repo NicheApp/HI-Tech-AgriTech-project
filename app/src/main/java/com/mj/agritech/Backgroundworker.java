@@ -3,10 +3,12 @@ package com.mj.agritech;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -24,7 +26,11 @@ import static com.mj.agritech.MainActivity.progressBar;
 public class Backgroundworker extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
-
+    SharedPreferences sharedpreferences;
+    public  static final String mypreference = "mypref";
+    public  static final String usernamekey = "userKey";
+    public  static final String userpasskey = "passKey";
+    private  String user_name,user_pass;
     Backgroundworker(Context ctx)
     {
         context=ctx;
@@ -36,8 +42,8 @@ public class Backgroundworker extends AsyncTask<String,Void,String> {
         String login_url= "http://192.168.43.151/login.php";
         if(type.equals("login")){
             try {
-                String user_name=voids[1];
-                String user_pass=voids[2];
+                 user_name=voids[1];
+                 user_pass=voids[2];
                 URL url=new URL(login_url);
                 HttpURLConnection httpURLConnection =(HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -85,8 +91,21 @@ public class Backgroundworker extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.INVISIBLE);
         String s1="true";
-        if(s1.compareTo(result)==0)
-        context.startActivity(new Intent(context, RegistrationActivity.class));
+        if(s1.compareTo(result)==0){
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(usernamekey, user_name);
+                    editor.putString(userpasskey, user_pass);
+                    editor.commit();
+
+                }
+            }, 600);
+            context.startActivity(new Intent(context, RegistrationActivity.class));
+        }
         else
             Toast.makeText(context,"Incorrect username or password",Toast.LENGTH_SHORT).show();
       // alertDialog.setMessage(result);

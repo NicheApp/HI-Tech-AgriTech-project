@@ -2,7 +2,9 @@ package com.mj.agritech;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,7 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import static com.mj.agritech.Backgroundworker.mypreference;
+import static com.mj.agritech.Backgroundworker.usernamekey;
+import static com.mj.agritech.Backgroundworker.userpasskey;
+
 public class MainActivity extends AppCompatActivity {
+SharedPreferences sharedpreferences;
 EditText username,password;
 String name,pass;
 Button login;
@@ -19,7 +26,13 @@ public  static ProgressBar progressBar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
-        username=findViewById(R.id.ed1);
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(usernamekey) && sharedpreferences.contains(userpasskey)) {
+           this.startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+
+        }
+       username=findViewById(R.id.ed1);
         password=findViewById(R.id.ed2);
         login=findViewById(R.id.signin);
         progressBar=findViewById(R.id.progressBar);

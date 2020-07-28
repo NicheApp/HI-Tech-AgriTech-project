@@ -7,6 +7,7 @@
     tools:context=".RegistrationActivity"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
+    tools:openDrawer="left"
 
     >
 
@@ -256,11 +257,15 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/draw_menu"
-        app:itemIconTint="@color/lightmaincolor"
-
+        app:itemIconTint="@android:color/white"
+         app:itemBackground="@color/lightmaincolor"
+        app:itemTextColor="@android:color/white"
+        android:clickable="true"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         android:id="@+id/nv">
+
+
 
     </com.google.android.material.navigation.NavigationView>
 
