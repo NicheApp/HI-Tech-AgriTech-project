@@ -1,38 +1,21 @@
 package com.mj.agritech;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.navigation.NavigationView;
-
-import static com.mj.agritech.Backgroundworker.mypreference;
 
 public class RegistrationActivity extends Fragment {
 
@@ -46,7 +29,7 @@ public class RegistrationActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_registration, container, false);
-        name = (EditText) view.findViewById(R.id.name);
+       name = (EditText) view.findViewById(R.id.name);
         age = (EditText) view.findViewById(R.id.age);
         phone = (EditText) view.findViewById(R.id.phone);
         trds = (EditText) view.findViewById(R.id.trds);
@@ -57,14 +40,14 @@ public class RegistrationActivity extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             /*   Handler handler = new Handler();
+               Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         progressBar2.setVisibility(View.VISIBLE);
                         progressBar2.setProgress(0);
                     }
-                }, 600);*/
+                }, 600);
 
                 CheckEditTextIsEmptyOrNot();
 
@@ -122,6 +105,5 @@ public class RegistrationActivity extends Fragment {
     }
 
 
+    }
 
-
-}

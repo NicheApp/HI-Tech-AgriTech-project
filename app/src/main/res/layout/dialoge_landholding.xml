@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/landholding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Land Holding"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/cropcategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <Spinner
+            android:id="@+id/cropsubcategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp" />
+
+
+
+        <EditText
+            android:id="@+id/totalland"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Total land (in acre)"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/irrigatedland"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Irrigated land (in acre)"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/irrigationsource"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginRight="20dp"
+          />
+
+        <EditText
+            android:id="@+id/percentageofirrigatedland"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Percentage of Irrigated land"
+            android:inputType="textPersonName" />
+        <Button
+            android:id="@+id/submitlocation"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:textSize="12sp"
+            android:text="Submit Query"
+            android:textColor="@android:color/white"
+            android:background="@color/purplecolor"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp"/>
+
+    </RelativeLayout>
+
+</ScrollView>

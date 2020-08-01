@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/landholding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Daily Wage(₹)"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/familymem"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="
+No. of family Members doing wage labour
+"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <EditText
+            android:id="@+id/daysenvolved"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:hint="
+No. of days involved
+"
+            android:layout_marginRight="20dp" />
+
+
+
+        <EditText
+            android:id="@+id/cultivated_area"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Cultivated Area (acre)"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/placework"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Place of work
+"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/distance"
+            android:layout_width="match_parent"
+            android:hint="
+Distance (in KM)
+"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <EditText
+            android:id="@+id/wage"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Wage(₹)
+"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/annincome"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Annual Income(₹)
+"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/submitlocation"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:textSize="12sp"
+            android:text="Submit Query"
+            android:textColor="@android:color/white"
+            android:background="@color/purplecolor"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="570dp"/>
+
+    </RelativeLayout>
+
+</ScrollView>

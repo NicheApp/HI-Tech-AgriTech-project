@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Family Member Details"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/memname"
+            android:hint="Name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <EditText
+            android:id="@+id/memage"
+            android:hint="Age"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp" />
+
+
+
+
+        <Spinner
+            android:id="@+id/memqualification"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginRight="20dp" />
+
+        <EditText
+            android:id="@+id/memskill"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Any Skills"/>
+
+        <EditText
+            android:id="@+id/memnumber"
+            android:layout_width="match_parent"
+            android:hint="Mobile No."
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+             />
+        <Button
+            android:id="@+id/submitmember"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:textSize="12sp"
+            android:text="Submit Query"
+            android:textColor="@android:color/white"
+            android:background="@color/purplecolor"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            >
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Male"
+                android:layout_marginTop="8dp"
+                android:checked="false"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="   Female"
+
+                android:checked="false"
+
+                android:textSize="20dp" />
+
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</ScrollView>

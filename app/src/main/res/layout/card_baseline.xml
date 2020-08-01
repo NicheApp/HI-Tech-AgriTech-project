@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="match_parent"
+
+    app:cardBackgroundColor="@android:color/transparent"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+       app:cardElevation="0dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@drawable/baselinecard"
+
+
+        >
+
+        <TextView
+            android:id="@+id/baseline_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_centerHorizontal="true"
+            android:text="location" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignLeft="@id/baseline_name"
+            android:layout_marginLeft="-50dp"
+            app:srcCompat="@drawable/correct" />
+
+        <Button
+            android:id="@+id/filldetailslocation"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="50dp"
+            android:background="@color/lightmaincolor"
+            android:textColor="@android:color/white"
+
+            android:text="Fill Details" />
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="180dp"
+            android:text="Show Details"
+            android:background="@color/lightmaincolor"
+            android:textColor="@android:color/white"
+
+            ></Button>
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>

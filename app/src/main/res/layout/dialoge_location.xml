@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Location"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"/>
+
+    <Spinner
+        android:id="@+id/trdsspinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"/>
+
+    <Spinner
+        android:id="@+id/state"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="20dp" />
+
+    <Spinner
+        android:id="@+id/district"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="20dp" />
+
+    <EditText
+        android:id="@+id/block"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Block"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/gp"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Gp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/village"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Village"
+        android:inputType="textPersonName" />
+    <Button
+        android:id="@+id/submitlocation"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:textSize="12sp"
+        android:text="Submit Query"
+        android:textColor="@android:color/white"
+        android:background="@color/purplecolor"
+        android:elevation="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"/>
+
+</RelativeLayout>
+
+</ScrollView>

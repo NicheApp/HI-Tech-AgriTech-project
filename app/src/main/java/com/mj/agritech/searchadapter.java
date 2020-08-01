@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -53,6 +54,14 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         holder.farmername.setText(uploadCurrent.getFarmername());
         holder.farmerno.setText(uploadCurrent.getFarmerphone());
         holder.farmeradd.setText(uploadCurrent.getFarmeraddress());
+        holder.baseline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext,Baseline.class);
+                mContext.startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -65,12 +74,14 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         public TextView farmername;
         public TextView farmerno;
         public TextView farmeradd;
+        public Button baseline;
         public ImageViewHolder(View itemView) {
             super(itemView);
 
             farmername = itemView.findViewById(R.id.farmername);
             farmerno = itemView.findViewById(R.id.farmerno_);
             farmeradd = itemView.findViewById(R.id.farmeradd);
+            baseline=itemView.findViewById(R.id.baseline);
         }
     }
 
