@@ -48,7 +48,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         return new ImageViewHolder(v);
     }
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, int position) {
+    public void onBindViewHolder(final ImageViewHolder holder, int position) {
 
         Farmer uploadCurrent = mUploads.get(position);
         holder.farmername.setText(uploadCurrent.getFarmername());
@@ -58,6 +58,8 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext,Baseline.class);
+                intent.putExtra("id", mUploads.get(holder.getAdapterPosition()).getFarmerphone());
+                intent.putExtra("name", mUploads.get(holder.getAdapterPosition()).getFarmername());
                 mContext.startActivity(intent);
 
             }

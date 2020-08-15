@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 
 import java.util.ArrayList;
@@ -19,6 +21,13 @@ import java.util.List;
 
 public class livestockDialog extends DialogFragment {
 EditText Numbers,Annualincomelivestock,Rearing,Netannual;
+    String FAMILY_ID;
+    Button submitquery;
+    public livestockDialog(String FAMILY_ID)
+    {
+        this.FAMILY_ID=FAMILY_ID;
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +41,11 @@ EditText Numbers,Annualincomelivestock,Rearing,Netannual;
         Annualincomelivestock=v.findViewById(R.id.annualincome);
         Rearing=v.findViewById(R.id.costearning);
         Netannual=v.findViewById(R.id.netannual);
+        submitquery=v.findViewById(R.id.submitlocation);
 
         spinner1.setPrompt("Name of the LiveStock");
 
-        List<String> list = new ArrayList<String>();
+        final List<String> list = new ArrayList<String>();
         list.add("Name of the LiveStock");
         list.add("Cow");
         list.add("Ox");
@@ -77,6 +87,24 @@ EditText Numbers,Annualincomelivestock,Rearing,Netannual;
 
             }
         });
+
+        submitquery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String a=   list.get(spinner1.getSelectedItemPosition());
+
+
+                String type = "livestock";
+                Familytable familytable = new Familytable(getContext());
+                familytable.execute(type, a,Numbers.getText().toString(),
+                        Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
+                        Netannual.getText().toString(),
+
+                        FAMILY_ID);
+
+            }
+        });
+
 
         // Do all the stuff to initialize your custom view
 

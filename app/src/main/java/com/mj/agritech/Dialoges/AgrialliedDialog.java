@@ -7,17 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AgrialliedDialog extends DialogFragment {
+    String FAMILY_ID;
+    Button submitquery;
+    public AgrialliedDialog(String FAMILY_ID)
+    {
+        this.FAMILY_ID=FAMILY_ID;
+
+    }
+
 
 EditText Nameintervention,Cityintervention,Unitintervention,Areaundercultivation,Production,Annualincome,Annualexp,Netannual;
     @Override
@@ -36,14 +46,14 @@ EditText Nameintervention,Cityintervention,Unitintervention,Areaundercultivation
         Annualincome=v.findViewById(R.id.alliedannuallincome);
         Annualexp=v.findViewById(R.id.alliedexpenditure);
         Netannual=v.findViewById(R.id.alliednetannual);
-
+        submitquery=v.findViewById(R.id.submitlocation);
 
         final Spinner spinner1 = v.findViewById(R.id.alliedactivity);
 
 
        spinner1.setPrompt("Allied Activity");
 
-        List<String> list = new ArrayList<String>();
+        final List<String> list = new ArrayList<String>();
         list.add("Allied Activity");
         list.add("Apiculture");
         list.add("Fishery");
@@ -86,6 +96,26 @@ Annualexp.addTextChangedListener(new TextWatcher() {
 
     }
 });
+
+
+        submitquery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String a=   list.get(spinner1.getSelectedItemPosition());
+
+
+
+                String type = "allied";
+                Familytable familytable = new Familytable(getContext());
+                familytable.execute(type, a,Nameintervention.getText().toString(),
+                        Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
+                        Areaundercultivation.getText().toString(),Production.getText().toString(),
+                        Annualexp.getText().toString(),Netannual.getText().toString(),
+                        FAMILY_ID);
+
+            }
+        });
+
         // Do all the stuff to initialize your custom view
 
         return v;

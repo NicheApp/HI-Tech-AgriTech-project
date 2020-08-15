@@ -3,12 +3,16 @@ package com.mj.agritech;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,6 +29,8 @@ import static com.mj.agritech.RegistrationActivity.progressBar2;
 public class Registrationbackground extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
+    boolean except =false;
+    public String user_name,user_age,user_phone,user_trds;
     Registrationbackground(Context ctx)
     {
         context=ctx;
@@ -33,13 +39,13 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... voids) {
         String type= voids[0];
-        String login_url= "http://192.168.43.151/registration.php";
+        String login_url= "http://192.168.43.151/respondent.php";
         if(type.equals("register")){
             try {
-                String user_name=voids[1];
-                String user_age=voids[2];
-                String user_phone=voids[3];
-                String user_trds=voids[4];
+                 user_name=voids[1];
+                 user_age=voids[2];
+                 user_phone=voids[3];
+                 user_trds=voids[4];
                 URL url=new URL(login_url);
                 HttpURLConnection httpURLConnection =(HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -55,6 +61,8 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
+
+
                 InputStream inputStream=httpURLConnection.getInputStream();
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
                 String result="";
@@ -65,11 +73,14 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
 
 
                 }
+
                 bufferedReader.close();
                 inputStream.close();
+
                 return  result;
             }catch (Exception e)
             {
+                except=true;
                 return e.toString();
             }
 
@@ -85,10 +96,28 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        progressBar2.setVisibility(View.INVISIBLE);
+
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
-        // alertDialog.setMessage(result);
+        String s1="false";
+        if(s1.compareTo(result)==0){
+            Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
+
+        }
+        else{
+
+            Intent baselineactivity =new Intent(context,Baseline.class);
+            baselineactivity.putExtra("id",result);
+            baselineactivity.putExtra("name",user_name);
+            context.startActivity(baselineactivity);
+
+
+            // alertDialog.setMessage(result);
+        //alertDialog.show();
+    }
+
+
+    // alertDialog.setMessage(result);
         //alertDialog.show();
     }
 

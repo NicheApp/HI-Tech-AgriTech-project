@@ -6,14 +6,23 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 
 public class DailyWageDialoge extends DialogFragment {
 
+    String FAMILY_ID;
+    Button submitquery;
+    public DailyWageDialoge(String FAMILY_ID)
+    {
+        this.FAMILY_ID=FAMILY_ID;
+
+    }
     EditText familymembers,days,cultivatedarea,placeofwork,distance,wage,annualincome;
 
     @Override
@@ -32,6 +41,7 @@ public class DailyWageDialoge extends DialogFragment {
         distance=v.findViewById(R.id.distance);
         wage=v.findViewById(R.id.wage);
         annualincome=v.findViewById(R.id.annincome);
+        submitquery=v.findViewById(R.id.submitlocation);
 
 
         wage.addTextChangedListener(new TextWatcher() {
@@ -62,6 +72,23 @@ public class DailyWageDialoge extends DialogFragment {
             }
         });
 
+        submitquery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                String type = "daily_wage";
+                Familytable familytable = new Familytable(getContext());
+                familytable.execute(type, familymembers.getText().toString(),
+                        days.getText().toString(),cultivatedarea.getText().toString() ,
+                        placeofwork.getText().toString(),distance.getText().toString(),
+                        wage.getText().toString(),annualincome.getText().toString(),
+
+                        FAMILY_ID);
+
+            }
+        });
 
 
         // Do all the stuff to initialize your custom view

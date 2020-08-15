@@ -7,17 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EnterpriseDetailsDialog extends DialogFragment {
+    String FAMILY_ID;
+    Button submitquery;
+    public EnterpriseDetailsDialog(String FAMILY_ID)
+    {
+        this.FAMILY_ID=FAMILY_ID;
+
+    }
 EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,netincome;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,12 +46,13 @@ EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,n
         expenditure=v.findViewById(R.id.annexpenditure);
         annualincome=v.findViewById(R.id.annincomeenterprise);
         netincome=v.findViewById(R.id.netincomeenterprise);
+        submitquery=v.findViewById(R.id.submitlocation);
 
 
 
         spinner1.setPrompt("Crop Category");
         spinner2.setPrompt("Choose Crop");
-        List<String> list = new ArrayList<String>();
+        final List<String> list = new ArrayList<String>();
         list.add("Registration");
         list.add("Registered");
         list.add("Non-Registered");
@@ -94,6 +104,22 @@ EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,n
             }
         });
 
+        submitquery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String a=   list.get(spinner1.getSelectedItemPosition());
+                String b= list2.get(spinner2.getSelectedItemPosition());
+
+                String type = "enterprise_details";
+                Familytable familytable = new Familytable(getContext());
+                familytable.execute(type,Microenterprice.getText().toString(),
+                        enterpenuername.getText().toString(),nameofperson.getText().toString() ,
+                        expenditure.getText().toString(),annualincome.getText().toString(),
+                        netincome.getText().toString(),a,b,
+                        FAMILY_ID);
+
+            }
+        });
 
 
         // Do all the stuff to initialize your custom view

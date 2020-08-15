@@ -1,8 +1,5 @@
 package com.mj.agritech;
 
-import android.app.AlertDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -10,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -23,6 +22,8 @@ public class RegistrationActivity extends Fragment {
     EditText name, age, phone, trds;
     String username, userage, userphone, usertrds;
     Boolean CheckEditText;
+    CheckBox checkBox;
+    ImageView phoneimage;
     public static ProgressBar progressBar2;
 
     @Nullable
@@ -34,7 +35,28 @@ public class RegistrationActivity extends Fragment {
         phone = (EditText) view.findViewById(R.id.phone);
         trds = (EditText) view.findViewById(R.id.trds);
         register = view.findViewById(R.id.register);
-        //progressBar2 = view.findViewById(R.id.progressBar2);
+        checkBox=view.findViewById(R.id.checkbox);
+        phoneimage=view.findViewById(R.id.imageView3);
+        progressBar2 = view.findViewById(R.id.progressBar2);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkBox.isChecked()==true) {
+                    phone.setVisibility(View.VISIBLE);
+                    phoneimage.setVisibility(View.VISIBLE);
+
+                }
+            else
+                {
+
+                    phone.setVisibility(View.INVISIBLE);
+                    phoneimage.setVisibility(View.INVISIBLE);
+
+
+                }
+
+            }
+        });
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -55,20 +77,7 @@ public class RegistrationActivity extends Fragment {
                     String type = "register";
                     Registrationbackground registrationbackground = new Registrationbackground(getContext());
                     registrationbackground.execute(type, username, userage, userphone, usertrds);
-                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-                    View layoutView = getLayoutInflater().inflate(R.layout.dialog_postive_layout, null);
-                    Button dialogButton = layoutView.findViewById(R.id.btnDialog);
-                    dialogBuilder.setView(layoutView);
-                    final AlertDialog alertDialog = dialogBuilder.create();
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                    alertDialog.show();
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            alertDialog.dismiss();
-                        }
-                    });
 
                 } else {
 
@@ -86,11 +95,16 @@ public class RegistrationActivity extends Fragment {
 
         username = name.getText().toString();
         userage= age.getText().toString();
+        if(checkBox.isChecked()==true){
         userphone = phone.getText().toString();
+        }else
+        {
+            userphone="";
+        }
         usertrds = trds.getText().toString();
 
 
-        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(userage) || TextUtils.isEmpty(userphone) || TextUtils.isEmpty(usertrds))
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(userage)  || TextUtils.isEmpty(usertrds))
         {
 
             CheckEditText = false;

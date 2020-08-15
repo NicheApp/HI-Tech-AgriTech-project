@@ -36,13 +36,16 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
     public List<String> mUploadscopy;
     public  List<String>mUploadscity;
     public static FragmentManager fm;
+    String FAMILY_ID;
+
 
     ProgressBar progressbaritem;
     int i=0;
-    public baselineadapter(Context context, List<String> uploads,FragmentManager fm) {
+    public baselineadapter(Context context, List<String> uploads,FragmentManager fm,String FAMILY_ID) {
         mContext = context;
         mUploads = uploads;
         this.fm = fm;
+        this.FAMILY_ID=FAMILY_ID;
         mUploadscopy = new ArrayList<>(mUploads);
         mUploadscity = new ArrayList<>(mUploads);
     }
@@ -74,7 +77,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new locationdialog();
+                    DialogFragment dialogFragment = new locationdialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
                 }
                 if(position==1){
@@ -84,7 +87,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new GeneralInfoDialog();
+                    DialogFragment dialogFragment = new GeneralInfoDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");}
 
                 if(position==2){
@@ -94,7 +97,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new FamilymemberDialog();
+                    DialogFragment dialogFragment = new FamilymemberDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");}
                 if(position==3){
                     FragmentTransaction ft = fm.beginTransaction();
@@ -103,7 +106,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new IncomeDetailsDialog();
+                    DialogFragment dialogFragment = new IncomeDetailsDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
 
                    // dialogFragment = new IncomeDetailsDialog();
@@ -115,7 +118,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new LandHolding();
+                    DialogFragment dialogFragment = new LandHolding(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new LandHolding();
                 }
@@ -126,7 +129,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new CropCultivationDialog();
+                    DialogFragment dialogFragment = new CropCultivationDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new CropCultivationDialog();
                 }
@@ -137,7 +140,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new livestockDialog();
+                    DialogFragment dialogFragment = new livestockDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new livestockDialog();
@@ -150,7 +153,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new AgrialliedDialog();
+                    DialogFragment dialogFragment = new AgrialliedDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new AgrialliedDialog();
@@ -162,7 +165,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new DailyWageDialoge();
+                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new DailyWageDialoge();
                 }
@@ -173,7 +176,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new SkillMappingdialog();
+                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new SkillMappingdialog();
@@ -185,7 +188,7 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new EnterpriseDetailsDialog();
+                    DialogFragment dialogFragment = new EnterpriseDetailsDialog(FAMILY_ID);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new EnterpriseDetailsDialog();
                 }
