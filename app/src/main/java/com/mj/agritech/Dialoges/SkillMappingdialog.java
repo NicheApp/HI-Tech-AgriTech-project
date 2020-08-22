@@ -34,7 +34,7 @@ public class SkillMappingdialog extends DialogFragment {
        professional=v.findViewById(R.id.typeofvocational);
         training=v.findViewById(R.id.durationoftraining);
         institute=v.findViewById(R.id.institution);
-        annualincome=v.findViewById(R.id.annualincome);
+        annualincome=v.findViewById(R.id.annincomeskillmapping);
         nameoftheperson=v.findViewById(R.id.nameperson);
         submitquery=v.findViewById(R.id.submitlocation);
 

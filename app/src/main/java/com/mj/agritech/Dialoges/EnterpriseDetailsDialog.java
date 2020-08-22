@@ -42,7 +42,7 @@ EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,n
         final Spinner spinner2 =  v.findViewById(R.id.partofgroup);
         Microenterprice=v.findViewById(R.id.enterprice);
         enterpenuername=v.findViewById(R.id.entrpenuername);
-        nameofperson=v.findViewById(R.id.nameperson);
+        nameofperson=v.findViewById(R.id.personenvolved);
         expenditure=v.findViewById(R.id.annexpenditure);
         annualincome=v.findViewById(R.id.annincomeenterprise);
         netincome=v.findViewById(R.id.netincomeenterprise);
@@ -107,13 +107,14 @@ EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,n
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   list.get(spinner1.getSelectedItemPosition());
-                String b= list2.get(spinner2.getSelectedItemPosition());
+                String a=   spinner1.getSelectedItem().toString();
+                String b=  spinner2.getSelectedItem().toString();
 
                 String type = "enterprise_details";
                 Familytable familytable = new Familytable(getContext());
                 familytable.execute(type,Microenterprice.getText().toString(),
-                        enterpenuername.getText().toString(),nameofperson.getText().toString() ,
+                        enterpenuername.getText().toString(),
+                        nameofperson.getText().toString() ,
                         expenditure.getText().toString(),annualincome.getText().toString(),
                         netincome.getText().toString(),a,b,
                         FAMILY_ID);

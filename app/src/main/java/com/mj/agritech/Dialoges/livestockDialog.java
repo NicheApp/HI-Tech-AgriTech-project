@@ -91,16 +91,14 @@ EditText Numbers,Annualincomelivestock,Rearing,Netannual;
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   list.get(spinner1.getSelectedItemPosition());
+                String a=   String.valueOf(spinner1.getSelectedItemPosition());
 
 
                 String type = "livestock";
                 Familytable familytable = new Familytable(getContext());
                 familytable.execute(type, a,Numbers.getText().toString(),
                         Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
-                        Netannual.getText().toString(),
-
-                        FAMILY_ID);
+                        Netannual.getText().toString(),FAMILY_ID);
 
             }
         });

@@ -46,7 +46,7 @@ Button submitquery;
         gender=v.findViewById(R.id.radioMale);
 
 
-        final Spinner spinner1 = v.findViewById(R.id.cast);
+        final Spinner spinner1 = v.findViewById(R.id.memqualification);
 
         final List<String> list = new ArrayList<String>();
         list.add("Caste/जाति");

@@ -36,8 +36,8 @@ public IncomeDetailsDialog(String FAMILY_ID)
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialoge_incomedetails, container, false);
         submitquery= v.findViewById(R.id.submitlocation);
-        baselinedays=v.findViewById(R.id.daysenvolved);
-        familymem=v.findViewById(R.id.familymem);
+        baselinedays=v.findViewById(R.id.daysengaged);
+        familymem=v.findViewById(R.id.meminvolved);
         annualincome=v.findViewById(R.id.income);
 
         final Spinner spinner1 = v.findViewById(R.id.occupation);
@@ -75,8 +75,8 @@ public IncomeDetailsDialog(String FAMILY_ID)
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   list.get(spinner1.getSelectedItemPosition());
-                String b= list2.get(spinner2.getSelectedItemPosition());
+                String a= String.valueOf(spinner1.getSelectedItemPosition());
+                String b= String.valueOf(spinner2.getSelectedItemPosition());
 
                 String type = "incomedetails";
                 Familytable familytable = new Familytable(getContext());

@@ -101,7 +101,7 @@ Annualexp.addTextChangedListener(new TextWatcher() {
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   list.get(spinner1.getSelectedItemPosition());
+                String a=   spinner1.getSelectedItem().toString();
 
 
 
@@ -110,6 +110,7 @@ Annualexp.addTextChangedListener(new TextWatcher() {
                 familytable.execute(type, a,Nameintervention.getText().toString(),
                         Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
                         Areaundercultivation.getText().toString(),Production.getText().toString(),
+                        Annualincome.getText().toString(),
                         Annualexp.getText().toString(),Netannual.getText().toString(),
                         FAMILY_ID);
 
