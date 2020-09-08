@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/allied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Allied Activities"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/alliedactivity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <EditText
+            android:id="@+id/nameintervention"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:hint="
+Name of Intervention"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp" />
+
+
+
+        <EditText
+            android:id="@+id/qtyofintervention"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Qty. of Intervention"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/unitintervention"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Unit of Measurement"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/areacultivation"
+            android:layout_width="match_parent"
+            android:hint="
+Area Under Cultivation (in acre)"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <EditText
+            android:id="@+id/productionqt"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Production (in Qtl.)"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/alliedannuallincome"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Annual Income(₹)"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/alliedexpenditure"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="570dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Annual Expenditure(₹)
+"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/alliednetannual"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="640dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Net Annual(₹)
+"
+            android:inputType="textPersonName" />
+
+
+        <TextView
+            android:id="@+id/intervention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="710dp"
+            android:text="TSRDS Support"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+        <EditText
+            android:id="@+id/nameofinterventionallied"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="780dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Name of the Intervention"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/qtyintervention"
+            android:layout_width="match_parent"
+            android:hint="
+Qty. of intervention
+"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="850dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <EditText
+            android:id="@+id/unitmeasurement"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="920dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+
+Unit of measurement
+"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/ammountintervention"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="990dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="
+Amount of Intervention(₹)"
+            android:inputType="textPersonName" />
+        <Button
+            android:id="@+id/submitlocation"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:textSize="12sp"
+            android:text="Submit Query"
+            android:textColor="@android:color/white"
+            android:background="@color/purplecolor"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1060dp"/>
+    </RelativeLayout>
+
+</ScrollView>

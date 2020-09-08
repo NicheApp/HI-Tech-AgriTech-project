@@ -63,6 +63,18 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
        // String uploadCurrent = mUploads.get(position);
         holder.baseline_name.setText(mUploads.get(position));
 
+        holder.showdetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+List<String> ls=new ArrayList<>();
+ls.add("location");ls.add("info");ls.add("familymember");ls.add("incomedetails");ls.add("land_holding");ls.add("crop_cultivation");
+ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping");ls.add("enterprise_details");
+                   showdetailsbackground showdetailsbackground=new showdetailsbackground(mContext,fm);
+                        showdetailsbackground.execute(ls.get(position),FAMILY_ID);
+
+            }
+        });
         holder.filldetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,13 +222,14 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public Button filldetails;
+        public Button filldetails,showdetails;
         public  TextView baseline_name;
         public ImageViewHolder(View itemView) {
             super(itemView);
 
 
             filldetails=itemView.findViewById(R.id.filldetailslocation);
+            showdetails=itemView.findViewById(R.id.showdetails);
             baseline_name=itemView.findViewById(R.id.baseline_name);
 
 

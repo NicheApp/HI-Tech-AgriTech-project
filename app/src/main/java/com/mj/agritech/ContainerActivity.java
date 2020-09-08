@@ -48,6 +48,11 @@ public class ContainerActivity extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
+if(savedInstanceState==null)
+{
+    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RegistrationActivity()).commit();
+
+}
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

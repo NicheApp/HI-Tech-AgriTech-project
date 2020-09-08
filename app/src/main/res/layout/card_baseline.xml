@@ -49,16 +49,17 @@
             android:textColor="@android:color/white"
 
             android:text="Fill Details" />
+
         <Button
+            android:id="@+id/showdetails"
             android:layout_width="110dp"
             android:layout_height="35dp"
-            android:layout_marginTop="60dp"
             android:layout_marginLeft="180dp"
-            android:text="Show Details"
+            android:layout_marginTop="60dp"
             android:background="@color/lightmaincolor"
-            android:textColor="@android:color/white"
+            android:text="Show Details"
 
-            ></Button>
+            android:textColor="@android:color/white"></Button>
     </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

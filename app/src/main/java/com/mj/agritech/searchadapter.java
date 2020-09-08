@@ -64,6 +64,12 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
 
             }
         });
+        holder.intervention.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
@@ -77,6 +83,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         public TextView farmerno;
         public TextView farmeradd;
         public Button baseline;
+        public Button intervention;
         public ImageViewHolder(View itemView) {
             super(itemView);
 
@@ -84,6 +91,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
             farmerno = itemView.findViewById(R.id.farmerno_);
             farmeradd = itemView.findViewById(R.id.farmeradd);
             baseline=itemView.findViewById(R.id.baseline);
+            intervention=itemView.findViewById(R.id.intervention);
         }
     }
 
