@@ -28,6 +28,7 @@ public class Enterpriseintervention extends DialogFragment {
 
     }
     EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,netincome;
+    EditText Nameintervention,Quantity,unitintervention,ammountintervention;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,10 @@ public class Enterpriseintervention extends DialogFragment {
         netincome=v.findViewById(R.id.netincomeenterprise);
         submitquery=v.findViewById(R.id.submitlocation);
 
-
+        Nameintervention=v.findViewById(R.id.nameintervention);
+        Quantity=v.findViewById(R.id.qtyintervention);
+        unitintervention=v.findViewById(R.id.unitmeasurement);
+        ammountintervention=v.findViewById(R.id.ammountintervention);
 
         spinner1.setPrompt("Crop Category");
         spinner2.setPrompt("Choose Crop");
@@ -117,7 +121,8 @@ public class Enterpriseintervention extends DialogFragment {
                         nameofperson.getText().toString() ,
                         expenditure.getText().toString(),annualincome.getText().toString(),
                         netincome.getText().toString(),a,b,
-                        FAMILY_ID);
+                        FAMILY_ID,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                        unitintervention.getText().toString(),ammountintervention.getText().toString());
 
             }
         });

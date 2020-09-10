@@ -25,21 +25,18 @@ public class Interventionclass extends AppCompatActivity {
     TextView Name, Id, baselineincome, currentyer;
     Button cropintervention, alliedothers, livestock, dailywage, skillmapping, enterprise;
     String FAMILY_ID;
-    FragmentManager fm;
-    FragmentTransaction ft;
-    Fragment prev;
-    DialogFragment dialogFragment;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intervention);
-      /*  cropintervention = findViewById(R.id.cropinterventiondetails);
+        cropintervention = findViewById(R.id.cropinterventiondetails);
         alliedothers = findViewById(R.id.alliedintervention);
         livestock = findViewById(R.id.livestockintervention);
         dailywage = findViewById(R.id.dailywage);
         skillmapping = findViewById(R.id.skillmappingintervention);
-        enterprise = findViewById(R.id.Ententerpriseintervention);*/
+        enterprise = findViewById(R.id.Ententerpriseintervention);
         Name = findViewById(R.id.Name);
         Id = findViewById(R.id.id);
         baselineincome = findViewById(R.id.baselineincome);
@@ -48,51 +45,111 @@ public class Interventionclass extends AppCompatActivity {
         FAMILY_ID = intent.getStringExtra("id");
         Name.setText("NAME: " + intent.getStringExtra("name"));
         Id.setText("ID: " + FAMILY_ID);
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
+
+
+        cropintervention.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+              DialogFragment  dialogFragment = new Cropintervention(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+
+
+            }
+        });
+
+        alliedothers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment  dialogFragment = new Alliedintervention(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+
+            }
+        });
+        livestock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment  dialogFragment = new livestockintervention(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+
+            }
+        });
+
+        dailywage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment  dialogFragment = new DailyWageDialoge(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+            }
+        });
+
+        skillmapping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment  dialogFragment = new SkillMappingdialog(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+            }
+        });
+
+        enterprise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment prev = fm.findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment  dialogFragment = new Enterpriseintervention(FAMILY_ID);
+                dialogFragment.show(ft, "dialog");
+            }
+        });
+
+
+
 
     }
 
-    public void onClick(View v) {
-        prev = fm.findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
 
-        switch (v.getId()) {
-
-            case R.id.cropinterventiondetails:
-                dialogFragment = new Cropintervention(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-
-                break;
-            case R.id.alliedintervention: /** Start a new Activity MyCards.java */
-
-
-                dialogFragment = new Alliedintervention(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-                break;
-            case R.id.livestockintervention: /** Start a new Activity MyCards.java */
-
-                dialogFragment = new livestockintervention(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-                break;
-            case R.id.dailywage: /** Start a new Activity MyCards.java */
-
-                dialogFragment = new DailyWageDialoge(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-                break;
-            case R.id.skillmappingintervention: /** Start a new Activity MyCards.java */
-
-                dialogFragment = new SkillMappingdialog(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-                break;
-            case R.id.Ententerpriseintervention: /** Start a new Activity MyCards.java */
-
-                dialogFragment = new Enterpriseintervention(FAMILY_ID);
-                dialogFragment.show(ft, "dialog");
-                break;
-        }
-    }
 }

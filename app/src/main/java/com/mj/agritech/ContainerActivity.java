@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -100,11 +101,16 @@ bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.On
 
                 return true;
             case R.id.search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
+                //().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
                 //openFragment(SmsFragment.newInstance("", ""));
+               FragmentManager fm = getSupportFragmentManager();
+                SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
+                searchBackground.execute();
                 return true;
             case R.id.report:
-                //openFragment(NotificationFragment.newInstance("", ""));
+               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Reportclass()).commit();
+               // openFragment(NotificationFragment.newInstance("", ""));
+
                 return true;
         }
 

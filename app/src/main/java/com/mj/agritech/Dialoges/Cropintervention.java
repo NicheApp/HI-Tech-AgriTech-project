@@ -41,6 +41,8 @@ public class Cropintervention extends DialogFragment {
 
 
     EditText Totalproduction,Cultivatedarea,Yield,Marketrate,Totalincome,Expenditure,CostofCultivation,Netincome;
+    EditText Nameintervention,Quantity,unitintervention,ammountintervention;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,11 @@ public class Cropintervention extends DialogFragment {
         Expenditure=v.findViewById(R.id.expenditure);
         CostofCultivation=v.findViewById(R.id.costcultivation);
         Netincome=v.findViewById(R.id.netincome);
+
+        Nameintervention=v.findViewById(R.id.nameintervention);
+        Quantity=v.findViewById(R.id.qtyintervention);
+        unitintervention=v.findViewById(R.id.unitmeasurement);
+        ammountintervention=v.findViewById(R.id.ammountintervention);
 
         final Spinner spinner1 = v.findViewById(R.id.cropcategory);
         final Spinner spinner2 =  v.findViewById(R.id.cropsubcategory);
@@ -196,7 +203,9 @@ public class Cropintervention extends DialogFragment {
                         Marketrate.getText().toString(),Totalincome.getText().toString(),
                         Expenditure.getText().toString(),CostofCultivation.getText().toString(),
                         Netincome.getText().toString(),
-                        FAMILY_ID);
+                        FAMILY_ID
+                        ,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                        unitintervention.getText().toString(),ammountintervention.getText().toString());
 
             }
         });

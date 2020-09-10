@@ -53,9 +53,5 @@ public String FAMILY_ID,FARMER_NAME;
         FragmentManager fm = getSupportFragmentManager();
         baselineadapter=new baselineadapter(this,baselinelist,fm,FAMILY_ID);
         recyclerView.setAdapter(baselineadapter);
-
-
-
-
-    }
+ }
 }

@@ -21,6 +21,7 @@ import java.util.List;
 
 public class livestockintervention extends DialogFragment {
     EditText Numbers,Annualincomelivestock,Rearing,Netannual;
+    EditText Nameintervention,Quantity,unitintervention,ammountintervention;
     String FAMILY_ID;
     Button submitquery;
     public livestockintervention(String FAMILY_ID)
@@ -42,6 +43,11 @@ public class livestockintervention extends DialogFragment {
         Rearing=v.findViewById(R.id.costearning);
         Netannual=v.findViewById(R.id.netannual);
         submitquery=v.findViewById(R.id.submitlocation);
+
+        Nameintervention=v.findViewById(R.id.nameintervention);
+        Quantity=v.findViewById(R.id.qtyintervention);
+        unitintervention=v.findViewById(R.id.unitmeasurement);
+        ammountintervention=v.findViewById(R.id.ammountintervention);
 
         spinner1.setPrompt("Name of the LiveStock");
 
@@ -98,7 +104,8 @@ public class livestockintervention extends DialogFragment {
                 Familytable familytable = new Familytable(getContext());
                 familytable.execute(type, a,Numbers.getText().toString(),
                         Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
-                        Netannual.getText().toString(),FAMILY_ID);
+                        Netannual.getText().toString(),FAMILY_ID,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                        unitintervention.getText().toString(),ammountintervention.getText().toString());
 
             }
         });

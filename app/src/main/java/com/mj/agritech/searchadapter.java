@@ -25,19 +25,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
+
+
 public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewHolder> implements Filterable {
     public Context mContext;
     public List<Farmer> mUploads;
     public List<Farmer> mUploadscopy;
     public  List<Farmer>mUploadscity;
 
-    ProgressBar progressbaritem;
-    int i=0;
+
     public searchadapter(Context context, List<Farmer> uploads) {
         mContext = context;
+
         mUploads = uploads;
-        mUploadscopy = new ArrayList<>(mUploads);
-        mUploadscity = new ArrayList<>(mUploads);
+        mUploadscopy = uploads;
+        mUploadscity = uploads;
     }
 
     @Override
@@ -67,6 +70,10 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         holder.intervention.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(mContext,Interventionclass.class);
+                intent.putExtra("id", mUploads.get(holder.getAdapterPosition()).getFarmerphone());
+                intent.putExtra("name", mUploads.get(holder.getAdapterPosition()).getFarmername());
+                mContext.startActivity(intent);
 
             }
         });
@@ -95,7 +102,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         }
     }
 
-     @Override
+    @Override
    public Filter getFilter() {
         return exampleFilter;
     }
