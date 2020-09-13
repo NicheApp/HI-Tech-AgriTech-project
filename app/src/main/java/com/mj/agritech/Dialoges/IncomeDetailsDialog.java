@@ -75,8 +75,8 @@ public IncomeDetailsDialog(String FAMILY_ID)
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a= String.valueOf(spinner1.getSelectedItemPosition());
-                String b= String.valueOf(spinner2.getSelectedItemPosition());
+                String a= list.get(spinner1.getSelectedItemPosition());
+                String b= list2.get(spinner2.getSelectedItemPosition());
 
                 String type = "incomedetails";
                 Familytable familytable = new Familytable(getContext());

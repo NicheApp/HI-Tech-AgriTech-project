@@ -96,7 +96,7 @@ public locationdialog(String FAMILY_ID)
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           String a=   list.get(spinner1.getSelectedItemPosition());
+           String a=   spinner1.getSelectedItem().toString();
              String b= list2.get(spinner2.getSelectedItemPosition());
              String c= list3.get(spinner3.getSelectedItemPosition());
               String bl=block.getText().toString();

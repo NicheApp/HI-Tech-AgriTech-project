@@ -27,6 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mj.agritech.SearchBackground.allfarmers;
 
 
 public class searchfragment extends Fragment {
@@ -37,11 +38,7 @@ public class searchfragment extends Fragment {
     public List<Farmer> farmers;
     androidx.appcompat.widget.SearchView searchView;
 
-    searchfragment(List<Farmer> farmers)
 
-    {
-        this.farmers=farmers;
-    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +49,10 @@ public class searchfragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         searchView=view.findViewById(R.id.searchbar);
-        searchadapter=new searchadapter(getActivity(),farmers);
+        SearchBackground searchBackground=new SearchBackground(getContext());
+        searchBackground.execute();
+        allfarmers.add(new Farmer("mm", "123", "00"));
+        searchadapter=new searchadapter(getActivity(),allfarmers);
         recyclerView.setAdapter(searchadapter);
         searchadapter.notifyDataSetChanged();
          searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {

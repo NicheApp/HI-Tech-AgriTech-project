@@ -68,7 +68,7 @@ public class CropCultivationDialog extends DialogFragment {
           list.add("Kharif");
           list.add("Rabi");
           list.add("Zaid");
-        getJSON("http://192.168.43.151/retrievedata.php");
+        getJSON("http://192.168.43.151/crop_cultivation.php");
        list2 = new ArrayList<String>();
        list2.add("Choose Crop");
 
@@ -186,8 +186,8 @@ public class CropCultivationDialog extends DialogFragment {
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String a=  String.valueOf( spinner1.getSelectedItemPosition());
-               String b= String.valueOf( spinner2.getSelectedItemPosition());
+               String a=  list.get( spinner1.getSelectedItemPosition());
+               String b= list2.get( spinner2.getSelectedItemPosition());
 
                 String type = "crop_cultivation";
                 Familytable familytable = new Familytable(getContext());
@@ -249,10 +249,10 @@ public class CropCultivationDialog extends DialogFragment {
 
     public void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] heroes = new String[jsonArray.length()];
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            list2.add(obj.getString("name"));
+            list2.add(obj.getString("crop_name"));
         }
 
     }

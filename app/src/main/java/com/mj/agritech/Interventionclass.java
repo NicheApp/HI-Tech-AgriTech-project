@@ -3,7 +3,9 @@ package com.mj.agritech;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -20,6 +22,9 @@ import com.mj.agritech.Dialoges.Enterpriseintervention;
 import com.mj.agritech.Dialoges.SkillMappingdialog;
 import com.mj.agritech.Dialoges.livestockintervention;
 import com.mj.agritech.Dialoges.locationdialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Interventionclass extends AppCompatActivity {
     TextView Name, Id, baselineincome, currentyer;
@@ -45,6 +50,23 @@ public class Interventionclass extends AppCompatActivity {
         FAMILY_ID = intent.getStringExtra("id");
         Name.setText("NAME: " + intent.getStringExtra("name"));
         Id.setText("ID: " + FAMILY_ID);
+        final Spinner spinner1 = findViewById(R.id.yearofintervention);
+
+        final List<String> list = new ArrayList<String>();
+        list.add("YEAR");
+        list.add("2019-2020");
+        list.add("2018-2019");
+        list.add("2017-2018");
+        list.add("2016-2017");
+
+
+
+        final ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                list);
+
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(myAdapter);
+
 
 
         cropintervention.setOnClickListener(new View.OnClickListener() {

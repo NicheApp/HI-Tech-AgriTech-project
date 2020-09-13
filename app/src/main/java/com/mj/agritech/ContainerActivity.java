@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -27,8 +28,7 @@ public class ContainerActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     public  static ProgressBar progressBar2;
-
-
+    FragmentManager fm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +48,7 @@ public class ContainerActivity extends AppCompatActivity {
 
         dl.addDrawerListener(t);
         t.syncState();
+        fm = getSupportFragmentManager();
 
 if(savedInstanceState==null)
 {
@@ -73,8 +74,11 @@ if(savedInstanceState==null)
                     case R.id.help:
                         Toast.makeText(ContainerActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
                     case R.id.logout:
-                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(mypreference , Context.MODE_PRIVATE);
-                        sharedPreferences.edit().clear().commit();
+                       // SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(mypreference , Context.MODE_PRIVATE);
+                        //sharedPreferences.edit().clear().commit();
+                       // SharedPreferences sharedPreferences = PreferenceManager
+                         //       .getDefaultSharedPreferences(getApplicationContext());
+                        //SharedPreferences.Editor
                         Intent intent =new Intent(ContainerActivity.this,MainActivity.class);
                         startActivity(intent);
                     default:
@@ -86,12 +90,6 @@ if(savedInstanceState==null)
 
             }
         });
-
-
-
-
-
-
 bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -101,14 +99,18 @@ bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.On
 
                 return true;
             case R.id.search:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
                 //().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
                 //openFragment(SmsFragment.newInstance("", ""));
-               FragmentManager fm = getSupportFragmentManager();
-                SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
-                searchBackground.execute();
+
+              //  SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
+               // searchBackground.execute();
                 return true;
             case R.id.report:
-               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Reportclass()).commit();
+
+                Reportbackground reportbackground=new Reportbackground(getApplication(),fm);
+                reportbackground.execute();
+              // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Reportclass()).commit();
                // openFragment(NotificationFragment.newInstance("", ""));
 
                 return true;

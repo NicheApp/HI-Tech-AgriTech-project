@@ -94,7 +94,7 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
                                     + URLEncoder.encode("age", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
                                     + URLEncoder.encode("sex", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                                    + URLEncoder.encode("ed_status", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
+                                    + URLEncoder.encode("caste", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("skill", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
                                     + URLEncoder.encode("mobile", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
                                     + "&"
@@ -184,7 +184,7 @@ public class Familytable extends AsyncTask<String,Void,String> {
                 {
                     post_data =
                             URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                                    + URLEncoder.encode("bsl_allied", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
+                                    + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
                                     + URLEncoder.encode("intv_name", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
                                     + URLEncoder.encode("intv_qty", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
                                     + URLEncoder.encode("intv_unit", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"

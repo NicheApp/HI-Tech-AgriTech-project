@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -97,14 +98,16 @@ public class Backgroundworker extends AsyncTask<String,Void,String> {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    SharedPreferences sharedPreferences = PreferenceManager
+                            .getDefaultSharedPreferences(context);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(usernamekey, user_name);
                     editor.putString(userpasskey, user_pass);
-                    editor.commit();
+                    editor.apply();
 
                 }
             }, 600);
-            context.startActivity(new Intent(context, RegistrationActivity.class));
+            context.startActivity(new Intent(context, ContainerActivity.class));
         }
         else
             Toast.makeText(context,"Incorrect username or password",Toast.LENGTH_SHORT).show();

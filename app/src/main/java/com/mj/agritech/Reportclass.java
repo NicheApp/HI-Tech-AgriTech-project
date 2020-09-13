@@ -27,10 +27,16 @@ import java.util.List;
 public class Reportclass extends Fragment {
 
     RecyclerView recyclerView;
-    public List<ReportModelclass> reportModelclassList;
+    public List<ReportModelclass> reportlist;
     ReportAdapter reportAdapter;
 
     public String FAMILY_ID,FARMER_NAME;
+    public Reportclass(List<ReportModelclass> reportlist1)
+    {
+        reportlist=reportlist1;
+
+
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,31 +45,8 @@ public class Reportclass extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        reportModelclassList=new ArrayList<>();
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportModelclassList.add(new ReportModelclass(1,"Manohar Mahato","General","Mundani","Paddy, Paddy, Fishery, Duck, Duck, ","95400 ",
-                "136000 "," 42.56% "));
-        reportAdapter=new ReportAdapter(reportModelclassList);
+
+        reportAdapter=new ReportAdapter(reportlist);
         recyclerView.setAdapter(reportAdapter);
 
         return  view;

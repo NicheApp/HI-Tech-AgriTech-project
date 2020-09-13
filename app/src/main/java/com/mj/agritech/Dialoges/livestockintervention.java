@@ -97,7 +97,7 @@ public class livestockintervention extends DialogFragment {
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   String.valueOf(spinner1.getSelectedItemPosition());
+                String a=list.get(spinner1.getSelectedItemPosition());
 
 
                 String type = "livestock";

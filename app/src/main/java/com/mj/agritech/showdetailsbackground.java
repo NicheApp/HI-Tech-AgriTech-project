@@ -113,6 +113,7 @@ public class showdetailsbackground extends AsyncTask<String,Void,String> {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
+
         DialogFragment dialogFragment = new showdata(result,type);
         dialogFragment.show(ft, "dialog");
 

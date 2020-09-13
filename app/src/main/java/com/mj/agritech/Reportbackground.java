@@ -39,26 +39,25 @@ import java.util.List;
 
 
 
-public class SearchBackground extends AsyncTask<String,String,String> {
+public class Reportbackground extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
     boolean except =false;
     public String type,family_id;
     public  FragmentManager fm;
-    public static List<Farmer> allfarmers=new ArrayList<>();
-    int i=0;
+    public List<ReportModelclass> reportModelclassList=new ArrayList<>();
 
-    SearchBackground(Context ctx)
+    Reportbackground(Context ctx,FragmentManager fm)
     {
         context=ctx;
-      //  this.fm=fm;
+        this.fm=fm;
 
 
     }
     @Override
     protected String doInBackground(String... voids) {
 
-        String login_url= "http://192.168.43.151/baseline.php";
+        String login_url= "http://192.168.43.151/report.php";
         if(true){
             try {
 
@@ -73,10 +72,8 @@ public class SearchBackground extends AsyncTask<String,String,String> {
                 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
                 String result="";
                 String line="";
-
                 while((line=bufferedReader.readLine())!=null)
                 {
-                    Log.i("--------",line);
                     result+=line;
 
 
@@ -103,45 +100,30 @@ public class SearchBackground extends AsyncTask<String,String,String> {
 
     @Override
     protected void onPostExecute(String result) {
-/*
-       try {
+
+        try {
             JSONArray jsonArray = new JSONArray(result);
 
             for(int i=0;i<jsonArray.length();i++)
             {
                 JSONObject obj = jsonArray.getJSONObject(i);
-                allfarmers.add(new Farmer(obj.getString("name"), obj.getString("family_id")+"", obj.getString("tsrds_op_area")));
+               reportModelclassList.add(new ReportModelclass(i,obj.getString("name"), obj.getString("caste")+"", obj.getString("village"),
+                       obj.getString("Interventions"),obj.getString("annualincome"),200+"",20+i+""
+                       ));
             }
-           Log.i("--------",allfarmers.size()+"");
-          //  fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
+
+            fm.beginTransaction().replace(R.id.fragment_container,new Reportclass(reportModelclassList)).commit();
 
         } catch (JSONException e) {
 
             Log.i("e===",e.toString());
         }
-*/
+
     }
 
     @Override
-    protected void onProgressUpdate(String... values)
-    {  super.onProgressUpdate(values);
-        Log.i("--------",values[0]);
-        try {
-            JSONArray jsonArray = new JSONArray(values);
-
-             JSONObject obj = jsonArray.getJSONObject(i);
-                allfarmers.add(new Farmer(obj.getString("name"), obj.getString("family_id")+"", obj.getString("tsrds_op_area")));
-
-Log.i("--------",obj.toString());
-           // fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
-
-        } catch (JSONException e) {
-
-            Log.i("e===",e.toString());
-        }
-   // super.onProgressUpdate(values);
-i++;
-
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
     }
 
 
