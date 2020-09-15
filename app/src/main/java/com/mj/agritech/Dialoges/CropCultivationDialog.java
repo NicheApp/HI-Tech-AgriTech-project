@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -190,8 +191,8 @@ public class CropCultivationDialog extends DialogFragment {
                String b= list2.get( spinner2.getSelectedItemPosition());
 
                 String type = "crop_cultivation";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type, a, b,Cultivatedarea.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata .execute(type, a, b,Cultivatedarea.getText().toString(),
                         Totalproduction.getText().toString(),Yield.getText().toString() ,
                         Marketrate.getText().toString(),Totalincome.getText().toString(),
                         Expenditure.getText().toString(),CostofCultivation.getText().toString(),

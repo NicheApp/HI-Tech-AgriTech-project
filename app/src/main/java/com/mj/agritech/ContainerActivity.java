@@ -99,12 +99,12 @@ bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.On
 
                 return true;
             case R.id.search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
+              //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
                 //().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
                 //openFragment(SmsFragment.newInstance("", ""));
 
-              //  SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
-               // searchBackground.execute();
+                SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
+                searchBackground.execute();
                 return true;
             case R.id.report:
 

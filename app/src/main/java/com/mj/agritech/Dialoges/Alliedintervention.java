@@ -15,16 +15,18 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Alliedintervention extends DialogFragment {
-    String FAMILY_ID;
+    String FAMILY_ID,year;
     Button submitquery;
-    public Alliedintervention(String FAMILY_ID)
+    public Alliedintervention(String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.year=year;
 
     }
 
@@ -106,8 +108,8 @@ public class Alliedintervention extends DialogFragment {
 
 
                 String type = "allied";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type, a,Nameintervention.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type, a,Nameintervention.getText().toString(),
                         Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
                         Areaundercultivation.getText().toString(),Production.getText().toString(),
                         Annualincome.getText().toString(),

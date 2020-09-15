@@ -13,12 +13,13 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
-public class DailyWageDialoge extends DialogFragment {
+public class dailywageintervention extends DialogFragment {
 
     String FAMILY_ID,year;
     Button submitquery;
-    public DailyWageDialoge(String FAMILY_ID,String year)
+    public dailywageintervention(String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
         this.year=year;
@@ -57,12 +58,12 @@ public class DailyWageDialoge extends DialogFragment {
 
                 try {
 
-                   annualincome.setText((Double.parseDouble(familymembers.getText().toString())*Double.parseDouble(days.getText().toString())*Double.parseDouble(wage.getText().toString())) + "");
+                    annualincome.setText((Double.parseDouble(familymembers.getText().toString())*Double.parseDouble(days.getText().toString())*Double.parseDouble(wage.getText().toString())) + "");
                 }
                 catch(Exception e)
                 {
 
-                   annualincome.setText("");
+                    annualincome.setText("");
                 }
 
 
@@ -81,11 +82,12 @@ public class DailyWageDialoge extends DialogFragment {
 
 
                 String type = "daily_wage";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type, familymembers.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type, familymembers.getText().toString(),
                         days.getText().toString(),
                         placeofwork.getText().toString(),distance.getText().toString(),
                         wage.getText().toString(),annualincome.getText().toString(),
+                        year,
 
                         FAMILY_ID);
 

@@ -29,7 +29,7 @@ public class Reportclass extends Fragment {
     RecyclerView recyclerView;
     public List<ReportModelclass> reportlist;
     ReportAdapter reportAdapter;
-
+    public static ProgressBar searchprogressBar;
     public String FAMILY_ID,FARMER_NAME;
     public Reportclass(List<ReportModelclass> reportlist1)
     {
@@ -42,7 +42,7 @@ public class Reportclass extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.report, container, false);
         recyclerView=view.findViewById(R.id.recyclerViewreport);
-
+          searchprogressBar=view.findViewById(R.id.searchprogress);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

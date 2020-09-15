@@ -30,12 +30,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cropintervention extends DialogFragment {
-    String FAMILY_ID;
-    Button submitquery;
+
     List<String> list2;
-    public Cropintervention(String FAMILY_ID)
+    String FAMILY_ID,year;
+    Button submitquery;
+    public Cropintervention (String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.year=year;
 
     }
 

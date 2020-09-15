@@ -36,7 +36,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import static com.mj.agritech.searchfragment.progressBar;
 
 
 public class SearchBackground extends AsyncTask<String,String,String> {
@@ -48,10 +48,10 @@ public class SearchBackground extends AsyncTask<String,String,String> {
     public static List<Farmer> allfarmers=new ArrayList<>();
     int i=0;
 
-    SearchBackground(Context ctx)
+    SearchBackground(Context ctx,FragmentManager fm)
     {
         context=ctx;
-      //  this.fm=fm;
+        this.fm=fm;
 
 
     }
@@ -98,12 +98,12 @@ public class SearchBackground extends AsyncTask<String,String,String> {
     @Override
     protected void onPreExecute() {
 
-
+        fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
     }
 
     @Override
     protected void onPostExecute(String result) {
-/*
+
        try {
             JSONArray jsonArray = new JSONArray(result);
 
@@ -113,34 +113,20 @@ public class SearchBackground extends AsyncTask<String,String,String> {
                 allfarmers.add(new Farmer(obj.getString("name"), obj.getString("family_id")+"", obj.getString("tsrds_op_area")));
             }
            Log.i("--------",allfarmers.size()+"");
-          //  fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
+
+            fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
 
         } catch (JSONException e) {
 
             Log.i("e===",e.toString());
         }
-*/
+
     }
 
     @Override
     protected void onProgressUpdate(String... values)
     {  super.onProgressUpdate(values);
-        Log.i("--------",values[0]);
-        try {
-            JSONArray jsonArray = new JSONArray(values);
 
-             JSONObject obj = jsonArray.getJSONObject(i);
-                allfarmers.add(new Farmer(obj.getString("name"), obj.getString("family_id")+"", obj.getString("tsrds_op_area")));
-
-Log.i("--------",obj.toString());
-           // fm.beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
-
-        } catch (JSONException e) {
-
-            Log.i("e===",e.toString());
-        }
-   // super.onProgressUpdate(values);
-i++;
 
     }
 

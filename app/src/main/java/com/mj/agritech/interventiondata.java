@@ -139,7 +139,9 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
                                     + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
+                                    + "&"
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8")
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8") ;
 }
                 else if(type.equals("skillmapping"))
                 {
@@ -150,7 +152,9 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("duration", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
                                     + URLEncoder.encode("institute", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") ;
+                                    + "&"
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
 }
                 else if(type.equals("enterprise_details"))
                 {
@@ -166,11 +170,12 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("reg_status", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") + "&"
                                     + URLEncoder.encode("bsl_ent", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8")
                                     + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8") + "&"
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8") + "&"
                                     + URLEncoder.encode("intv_name", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_qty", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_unit", "UTF-8") + "=" + URLEncoder.encode(voids[12], "UTF-8")+ "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[13], "UTF-8");
+                                    + URLEncoder.encode("intv_value", "UTF-8") + "=" + URLEncoder.encode(voids[13], "UTF-8")+ "&"
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[14], "UTF-8");
 
                 }
 
@@ -216,16 +221,17 @@ public class interventiondata extends AsyncTask<String,Void,String> {
         Log.i("----------------",result);
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
-        String s1="false";
+        String s1="true";
         if(s1.compareTo(result)==0){
 
-            Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
 
         }
         else{
+    Log.i("----------",result);
 
-
-            Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
 
             // alertDialog.setMessage(result);
             //alertDialog.show();

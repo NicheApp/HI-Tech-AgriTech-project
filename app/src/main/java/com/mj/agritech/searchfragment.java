@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,23 +38,28 @@ public class searchfragment extends Fragment {
     public searchadapter searchadapter;
     String farmerjson;
     public List<Farmer> farmers;
+    public static ProgressBar progressBar;
     androidx.appcompat.widget.SearchView searchView;
+    searchfragment(List <Farmer> farmers1){
+
+        farmers=farmers1;
+    }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.searchfragment,container,false);
-
+         progressBar=view.findViewById(R.id.searchprogress);
         recyclerView=view.findViewById(R.id.recyclerview);
        
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         searchView=view.findViewById(R.id.searchbar);
-        SearchBackground searchBackground=new SearchBackground(getContext());
-        searchBackground.execute();
-        allfarmers.add(new Farmer("mm", "123", "00"));
-        searchadapter=new searchadapter(getActivity(),allfarmers);
+        allfarmers.add(new Farmer("Budhimata Paradha", "9411822210", "jharkhand"));
+        if(allfarmers.size()>2)
+        {progressBar.setVisibility(View.INVISIBLE);}
+        searchadapter=new searchadapter(getActivity(),farmers);
         recyclerView.setAdapter(searchadapter);
         searchadapter.notifyDataSetChanged();
          searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {

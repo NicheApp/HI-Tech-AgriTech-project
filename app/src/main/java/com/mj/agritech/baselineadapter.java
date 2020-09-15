@@ -177,7 +177,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID);
+                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID,2013+"");
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new DailyWageDialoge();
                 }
@@ -188,7 +188,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID,2012+"");
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new SkillMappingdialog();

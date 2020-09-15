@@ -36,7 +36,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import static com.mj.agritech.Reportclass.searchprogressBar;
 
 
 public class Reportbackground extends AsyncTask<String,Void,String> {
@@ -107,11 +107,11 @@ public class Reportbackground extends AsyncTask<String,Void,String> {
             for(int i=0;i<jsonArray.length();i++)
             {
                 JSONObject obj = jsonArray.getJSONObject(i);
-               reportModelclassList.add(new ReportModelclass(i,obj.getString("name"), obj.getString("caste")+"", obj.getString("village"),
+               reportModelclassList.add(new ReportModelclass(obj.getString("sno"),obj.getString("name"), obj.getString("caste")+"", obj.getString("village"),
                        obj.getString("Interventions"),obj.getString("annualincome"),200+"",20+i+""
                        ));
             }
-
+            searchprogressBar.setVisibility(View.INVISIBLE);
             fm.beginTransaction().replace(R.id.fragment_container,new Reportclass(reportModelclassList)).commit();
 
         } catch (JSONException e) {

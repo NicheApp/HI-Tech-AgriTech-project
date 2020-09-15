@@ -15,16 +15,18 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Enterpriseintervention extends DialogFragment {
-    String FAMILY_ID;
+    String FAMILY_ID,year;
     Button submitquery;
-    public Enterpriseintervention(String FAMILY_ID)
+    public Enterpriseintervention(String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.year=year;
 
     }
     EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,netincome;
@@ -115,14 +117,14 @@ public class Enterpriseintervention extends DialogFragment {
                 String b=  spinner2.getSelectedItem().toString();
 
                 String type = "enterprise_details";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type,Microenterprice.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type,Microenterprice.getText().toString(),
                         enterpenuername.getText().toString(),
                         nameofperson.getText().toString() ,
                         expenditure.getText().toString(),annualincome.getText().toString(),
                         netincome.getText().toString(),a,b,
-                        FAMILY_ID,Nameintervention.getText().toString(),Quantity.getText().toString(),
-                        unitintervention.getText().toString(),ammountintervention.getText().toString());
+                        year,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                        unitintervention.getText().toString(),ammountintervention.getText().toString(),FAMILY_ID);
 
             }
         });

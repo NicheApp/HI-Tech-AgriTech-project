@@ -20,8 +20,10 @@ import com.mj.agritech.Dialoges.Cropintervention;
 import com.mj.agritech.Dialoges.DailyWageDialoge;
 import com.mj.agritech.Dialoges.Enterpriseintervention;
 import com.mj.agritech.Dialoges.SkillMappingdialog;
+import com.mj.agritech.Dialoges.dailywageintervention;
 import com.mj.agritech.Dialoges.livestockintervention;
 import com.mj.agritech.Dialoges.locationdialog;
+import com.mj.agritech.Dialoges.skillmappingintervention;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-              DialogFragment  dialogFragment = new Cropintervention(FAMILY_ID);
+              DialogFragment  dialogFragment = new Cropintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
 
 
@@ -98,7 +100,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-                DialogFragment  dialogFragment = new Alliedintervention(FAMILY_ID);
+                DialogFragment  dialogFragment = new Alliedintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
 
             }
@@ -106,6 +108,7 @@ public class Interventionclass extends AppCompatActivity {
         livestock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ;
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 Fragment prev = fm.findFragmentByTag("dialog");
@@ -114,7 +117,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-                DialogFragment  dialogFragment = new livestockintervention(FAMILY_ID);
+                DialogFragment  dialogFragment = new livestockintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
 
             }
@@ -131,7 +134,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-                DialogFragment  dialogFragment = new DailyWageDialoge(FAMILY_ID);
+                DialogFragment  dialogFragment = new dailywageintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
             }
         });
@@ -147,7 +150,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-                DialogFragment  dialogFragment = new SkillMappingdialog(FAMILY_ID);
+                DialogFragment  dialogFragment = new skillmappingintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
             }
         });
@@ -163,7 +166,7 @@ public class Interventionclass extends AppCompatActivity {
                 }
                 ft.addToBackStack(null);
 
-                DialogFragment  dialogFragment = new Enterpriseintervention(FAMILY_ID);
+                DialogFragment  dialogFragment = new Enterpriseintervention(FAMILY_ID,spinner1.getSelectedItem().toString());
                 dialogFragment.show(ft, "dialog");
             }
         });

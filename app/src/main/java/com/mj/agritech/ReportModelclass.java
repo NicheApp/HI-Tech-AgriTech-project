@@ -1,8 +1,8 @@
 package com.mj.agritech;
 
 public class ReportModelclass {
-    public int serial;
-    public String respondent,caste,village,intervention,baselineincome,currentyear,percentage;
+
+    public String respondent,caste,village,intervention,baselineincome,currentyear,percentage,serial;
 
   public  ReportModelclass()
     {
@@ -11,7 +11,7 @@ public class ReportModelclass {
 
     }
 
-    public  ReportModelclass(int serial,String respondent,String caste,String village,String intervention,String baselineincome,String currentyear,String percentage)
+    public  ReportModelclass(String serial,String respondent,String caste,String village,String intervention,String baselineincome,String currentyear,String percentage)
     {
    this.serial=serial;
    this.respondent=respondent;
@@ -23,11 +23,11 @@ public class ReportModelclass {
    this.percentage=percentage;
  }
 
-    public int getSerial() {
+    public String getSerial() {
         return serial;
     }
 
-    public void setSerial(int serial) {
+    public void setSerial(String serial) {
         this.serial = serial;
     }
 

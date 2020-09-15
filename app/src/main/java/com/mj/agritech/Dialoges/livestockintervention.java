@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,12 @@ import java.util.List;
 public class livestockintervention extends DialogFragment {
     EditText Numbers,Annualincomelivestock,Rearing,Netannual;
     EditText Nameintervention,Quantity,unitintervention,ammountintervention;
-    String FAMILY_ID;
+    String FAMILY_ID,year;
     Button submitquery;
-    public livestockintervention(String FAMILY_ID)
+    public livestockintervention(String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.year=year;
 
     }
     @Override
@@ -101,8 +103,8 @@ public class livestockintervention extends DialogFragment {
 
 
                 String type = "livestock";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type, a,Numbers.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type, a,Numbers.getText().toString(),
                         Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
                         Netannual.getText().toString(),FAMILY_ID,Nameintervention.getText().toString(),Quantity.getText().toString(),
                         unitintervention.getText().toString(),ammountintervention.getText().toString());

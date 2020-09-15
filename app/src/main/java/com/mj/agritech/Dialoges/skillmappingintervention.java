@@ -12,11 +12,11 @@ import androidx.fragment.app.DialogFragment;
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 
-public class SkillMappingdialog extends DialogFragment {
+public class skillmappingintervention extends DialogFragment {
     EditText nameoftheperson,professional,training,institute,annualincome;
     String FAMILY_ID,year;
     Button submitquery;
-    public SkillMappingdialog(String FAMILY_ID,String year)
+    public skillmappingintervention(String FAMILY_ID,String year)
     {
         this.FAMILY_ID=FAMILY_ID;
         this.year=year;
@@ -32,7 +32,7 @@ public class SkillMappingdialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialoge_skillmapping, container, false);
         nameoftheperson=v.findViewById(R.id.nameperson);
-       professional=v.findViewById(R.id.typeofvocational);
+        professional=v.findViewById(R.id.typeofvocational);
         training=v.findViewById(R.id.durationoftraining);
         institute=v.findViewById(R.id.institution);
         annualincome=v.findViewById(R.id.annincomeskillmapping);
@@ -54,6 +54,7 @@ public class SkillMappingdialog extends DialogFragment {
                 familytable.execute(type,nameoftheperson.getText().toString(),
                         professional.getText().toString(),training.getText().toString() ,
                         institute.getText().toString(),annualincome.getText().toString(),
+                        year,
                         FAMILY_ID);
 
             }
@@ -63,6 +64,6 @@ public class SkillMappingdialog extends DialogFragment {
 
         return v;
 
-}
+    }
 
 }

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+import static com.mj.agritech.searchfragment.progressBar;
 
 
 public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewHolder> implements Filterable {
@@ -36,6 +36,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
 
 
     public searchadapter(Context context, List<Farmer> uploads) {
+
         mContext = context;
 
         mUploads = uploads;
