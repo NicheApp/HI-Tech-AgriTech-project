@@ -6,20 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import static com.mj.agritech.SearchBackground.allfarmers;
 
-import static com.mj.agritech.Backgroundworker.mypreference;
 
 public class ContainerActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
@@ -27,6 +26,7 @@ public class ContainerActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    TextView crp_user,oparea;
     public  static ProgressBar progressBar2;
     FragmentManager fm;
     @Override
@@ -41,7 +41,9 @@ public class ContainerActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         nv = (NavigationView)findViewById(R.id.nv);
-
+        View headerView =nv.getHeaderView(0);
+        crp_user=headerView.findViewById(R.id.crpuser);
+        oparea=headerView.findViewById(R.id.oparea);
         progressBar2=findViewById(R.id.progressBar2);
         dl = (DrawerLayout)findViewById(R.id.drawer_layout);
         t = new ActionBarDrawerToggle(this, dl,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -49,20 +51,41 @@ public class ContainerActivity extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
         fm = getSupportFragmentManager();
+        dl.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+
+                SharedPreferences prefs=getSharedPreferences("MyPref",MODE_PRIVATE);
+                crp_user.setText(prefs.getString("key_name", "crpuser"));
+                oparea.setText(prefs.getString("key_oparea", "oparea"));
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
+
+
+
 
 if(savedInstanceState==null)
 {
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RegistrationActivity()).commit();
 
 }
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-
-
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+  nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
@@ -70,12 +93,14 @@ if(savedInstanceState==null)
                 {
                     case R.id.index:
 
-                        Toast.makeText(ContainerActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+
                     case R.id.help:
+
                         Toast.makeText(ContainerActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
                     case R.id.logout:
-                       // SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(mypreference , Context.MODE_PRIVATE);
-                        //sharedPreferences.edit().clear().commit();
+
+                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPref" ,MODE_PRIVATE);
+                        sharedPreferences.edit().clear().commit();
                        // SharedPreferences sharedPreferences = PreferenceManager
                          //       .getDefaultSharedPreferences(getApplicationContext());
                         //SharedPreferences.Editor
@@ -99,19 +124,20 @@ bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.On
 
                 return true;
             case R.id.search:
-              //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
-                //().beginTransaction().replace(R.id.fragment_container,new searchfragment()).commit();
-                //openFragment(SmsFragment.newInstance("", ""));
-
+if(allfarmers.size()==0){
                 SearchBackground searchBackground=new SearchBackground(getApplication(),fm);
-                searchBackground.execute();
+                searchBackground.execute();}
+else
+{
+    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new searchfragment(allfarmers)).commit();
+
+}
                 return true;
             case R.id.report:
 
-                Reportbackground reportbackground=new Reportbackground(getApplication(),fm);
-                reportbackground.execute();
-              // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Reportclass()).commit();
-               // openFragment(NotificationFragment.newInstance("", ""));
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Reportclass()).commit();
+
 
                 return true;
         }

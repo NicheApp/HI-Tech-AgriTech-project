@@ -36,7 +36,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignLeft="@id/baseline_name"
-            android:layout_marginLeft="-50dp"
+            android:layout_marginLeft="-30dp"
             app:srcCompat="@drawable/correct" />
 
         <Button

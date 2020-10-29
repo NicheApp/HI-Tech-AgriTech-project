@@ -2,18 +2,12 @@ package com.mj.agritech;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import org.json.JSONObject;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,8 +18,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import static com.mj.agritech.RegistrationActivity.progressBar2;
 
 public class Familytable extends AsyncTask<String,Void,String> {
     Context context;
@@ -41,16 +33,18 @@ public class Familytable extends AsyncTask<String,Void,String> {
     String line = "";
     String login_url;
     URL url;
+    View view;
     public String user_name,user_age,user_phone,user_trds;
-    public Familytable(Context ctx)
+    public Familytable(Context ctx,View v)
     {
         context=ctx;
+        view=v;
 
     }
     @Override
     protected String doInBackground(String... voids) {
          type= voids[0];
-        login_url= "http://192.168.43.151/family.php";
+        login_url= "https://theagriculture.tech/and_files/family.php";
         if(true){
             try {
 
@@ -299,22 +293,29 @@ public class Familytable extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Log.i("----------------",result);
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
         String s1="false";
         if(s1.compareTo(result)==0){
-
-            Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
+            new StyleableToast
+                    .Builder(context)
+                    .text("Something Went Wrong!")
+                    .textColor(Color.WHITE)
+                    .backgroundColor(Color.RED)
+                    .show();
 
         }
         else{
 
 
-            Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
+            new StyleableToast
+                    .Builder(context)
+                    .text("Data Added!")
+                    .textColor(Color.WHITE)
+                    .backgroundColor(Color.BLUE).iconStart(getIcon())
+                    .show();
 
-            // alertDialog.setMessage(result);
-            //alertDialog.show();
+
         }
 
 
@@ -327,5 +328,11 @@ public class Familytable extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 
-
+    public int getIcon() {
+        if (android.os.Build.VERSION.SDK_INT >= 27) {
+            return R.drawable.ic_baseline_done_24;
+        } else {
+            return R.drawable.ic_baseline_done_24;
+        }
+    }
 }

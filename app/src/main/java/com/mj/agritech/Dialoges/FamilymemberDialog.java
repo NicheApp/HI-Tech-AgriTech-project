@@ -76,7 +76,7 @@ Button submitquery;
               }
 
                 String type = "familymember";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, memname.getText().toString(),
                         memage.getText().toString(),gen, list.get(spinner1.getSelectedItemPosition()),
                         skills.getText().toString(),memage.getText().toString()

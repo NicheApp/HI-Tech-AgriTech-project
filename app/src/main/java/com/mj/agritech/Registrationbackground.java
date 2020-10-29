@@ -5,14 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import org.json.JSONObject;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -38,8 +35,9 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
     }
     @Override
     protected String doInBackground(String... voids) {
+        SharedPreferences pref = context.getSharedPreferences("MyPref", 0); // 0 - for priv
         String type= voids[0];
-        String login_url= "http://192.168.43.151/respondent.php";
+        String login_url= "https://theagriculture.tech/and_files/respondent.php";
         if(type.equals("register")){
             try {
                  user_name=voids[1];
@@ -56,7 +54,9 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
                 String post_data= URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
                         +URLEncoder.encode("user_age","UTF-8")+"="+URLEncoder.encode(user_age,"UTF-8") +"&"
                         +URLEncoder.encode("user_phone","UTF-8")+"="+URLEncoder.encode(user_phone,"UTF-8") +"&"
-                        +URLEncoder.encode("user_trds","UTF-8")+"="+URLEncoder.encode(user_trds,"UTF-8");
+                        +URLEncoder.encode("user_trds","UTF-8")+"="+URLEncoder.encode(user_trds,"UTF-8") +"&"
+                        +URLEncoder.encode("user_crp","UTF-8")+"="+URLEncoder.encode(pref.getString("key_user", "crpuser"),"UTF-8")
+                        ;
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -101,7 +101,12 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
 
         String s1="false";
         if(s1.compareTo(result)==0){
-            Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
+            new StyleableToast
+                    .Builder(context)
+                    .text("Registration Failed !")
+                    .textColor(Color.WHITE)
+                    .backgroundColor(Color.RED)
+                    .show();
 
         }
         else{
@@ -109,11 +114,8 @@ public class Registrationbackground extends AsyncTask<String,Void,String> {
             Intent baselineactivity =new Intent(context,Baseline.class);
             baselineactivity.putExtra("id",result);
             baselineactivity.putExtra("name",user_name);
+            progressBar2.setVisibility(View.INVISIBLE);
             context.startActivity(baselineactivity);
-
-
-            // alertDialog.setMessage(result);
-        //alertDialog.show();
     }
 
 

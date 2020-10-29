@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 import com.mj.agritech.interventiondata;
 
@@ -31,7 +30,7 @@ public class Alliedintervention extends DialogFragment {
     }
 
 
-    EditText Nameintervention,Cityintervention,Unitintervention,Areaundercultivation,Production,Annualincome,Annualexp,Netannual;
+    EditText Nameintervention,Cityintervention,Unitintervention,Areaundercultivation,Production,Annualincome,Annualexp,Netannual,ammountintervention;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +48,7 @@ public class Alliedintervention extends DialogFragment {
         Annualexp=v.findViewById(R.id.alliedexpenditure);
         Netannual=v.findViewById(R.id.alliednetannual);
         submitquery=v.findViewById(R.id.submitlocation);
+        ammountintervention=v.findViewById(R.id.ammountintervention);
 
         final Spinner spinner1 = v.findViewById(R.id.alliedactivity);
 
@@ -114,6 +114,7 @@ public class Alliedintervention extends DialogFragment {
                         Areaundercultivation.getText().toString(),Production.getText().toString(),
                         Annualincome.getText().toString(),
                         Annualexp.getText().toString(),Netannual.getText().toString(),
+                        year, ammountintervention.getText().toString(),
                         FAMILY_ID);
 
             }

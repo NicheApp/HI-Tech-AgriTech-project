@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 import com.mj.agritech.interventiondata;
 
@@ -106,8 +105,8 @@ public class livestockintervention extends DialogFragment {
                 interventiondata interventiondata = new interventiondata(getContext());
                 interventiondata.execute(type, a,Numbers.getText().toString(),
                         Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
-                        Netannual.getText().toString(),FAMILY_ID,Nameintervention.getText().toString(),Quantity.getText().toString(),
-                        unitintervention.getText().toString(),ammountintervention.getText().toString());
+                        Netannual.getText().toString(),year,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                        unitintervention.getText().toString(),ammountintervention.getText().toString(),FAMILY_ID);
 
             }
         });

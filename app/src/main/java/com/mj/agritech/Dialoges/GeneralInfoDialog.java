@@ -95,7 +95,7 @@ public class GeneralInfoDialog extends DialogFragment {
                 String d= list4.get(spinner4.getSelectedItemPosition());
                 String baselinesurvey=baseline.getText().toString();
                 String type = "info";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a, b, c, d,baselinesurvey,FAMILY_ID);
 
             }

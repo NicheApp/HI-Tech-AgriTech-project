@@ -81,13 +81,13 @@ public class DailyWageDialoge extends DialogFragment {
 
 
                 String type = "daily_wage";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, familymembers.getText().toString(),
                         days.getText().toString(),
                         placeofwork.getText().toString(),distance.getText().toString(),
-                        wage.getText().toString(),annualincome.getText().toString(),
+                        wage.getText().toString(),annualincome.getText().toString(), FAMILY_ID);
 
-                        FAMILY_ID);
+
 
             }
         });

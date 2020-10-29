@@ -1,16 +1,17 @@
 package com.mj.agritech;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.muddzdev.styleabletoast.StyleableToast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,11 +27,10 @@ import static com.mj.agritech.MainActivity.progressBar;
 
 public class Backgroundworker extends AsyncTask<String,Void,String> {
     Context context;
-    AlertDialog alertDialog;
-    SharedPreferences sharedpreferences;
-    public  static final String mypreference = "mypref";
-    public  static final String usernamekey = "userKey";
-    public  static final String userpasskey = "passKey";
+
+    public static String user_crp,op_area;
+
+
     private  String user_name,user_pass;
     Backgroundworker(Context ctx)
     {
@@ -40,7 +40,7 @@ public class Backgroundworker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... voids) {
         String type= voids[0];
-        String login_url= "http://192.168.43.151/login.php";
+        String login_url= "https://theagriculture.tech/and_files/login.php";
         if(type.equals("login")){
             try {
                  user_name=voids[1];
@@ -82,35 +82,40 @@ public class Backgroundworker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
 
-
-       // alertDialog=new AlertDialog.Builder(context).create();
-        //alertDialog.setTitle("Login Status");
-
     }
 
     @Override
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.INVISIBLE);
-        String s1="true";
-        if(s1.compareTo(result)==0){
+        String s1="false";
+        if(s1.compareTo(result)!=0){
+            try{
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject obj = jsonArray.getJSONObject(0);
+                user_crp = obj.getString("name");
+                op_area= obj.getString("op_area");
+                Log.i("crpuser",user_crp);
+            }
+            catch (Exception e){
+                Log.i("json----------------",e.toString());
+            }
+            SharedPreferences pref = context.getSharedPreferences("MyPref", 0); // 0 - for private mode
+             SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("key_user", user_name);
+                    editor.putString("key_pass", user_pass);
+                    editor.putString("key_name", user_crp);
+                    editor.putString("key_oparea", op_area);
+                      editor.commit();
 
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    SharedPreferences sharedPreferences = PreferenceManager
-                            .getDefaultSharedPreferences(context);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(usernamekey, user_name);
-                    editor.putString(userpasskey, user_pass);
-                    editor.apply();
-
-                }
-            }, 600);
             context.startActivity(new Intent(context, ContainerActivity.class));
         }
         else
-            Toast.makeText(context,"Incorrect username or password",Toast.LENGTH_SHORT).show();
+        { new StyleableToast
+                .Builder(context)
+                .text("Incorrect username or password")
+                .textColor(Color.WHITE)
+                .backgroundColor(Color.RED)
+                .show();}
       // alertDialog.setMessage(result);
        //alertDialog.show();
     }

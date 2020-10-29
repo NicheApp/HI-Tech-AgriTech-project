@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,7 +77,7 @@ public class Cropintervention extends DialogFragment {
         list.add("Kharif");
         list.add("Rabi");
         list.add("Zaid");
-        getJSON("http://192.168.43.151/retrievedata.php");
+        getJSON("https://theagriculture.tech/and_files/crop_cultivation.php");
         list2 = new ArrayList<String>();
         list2.add("Choose Crop");
 
@@ -200,15 +200,15 @@ public class Cropintervention extends DialogFragment {
                 String a=  list.get( spinner1.getSelectedItemPosition());
                 String b= list2.get( spinner2.getSelectedItemPosition());
                 String type = "crop_cultivation";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type, a, b,Cultivatedarea.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type, a, b,Cultivatedarea.getText().toString(),
                         Totalproduction.getText().toString(),Yield.getText().toString() ,
                         Marketrate.getText().toString(),Totalincome.getText().toString(),
                         Expenditure.getText().toString(),CostofCultivation.getText().toString(),
                         Netincome.getText().toString(),
-                        FAMILY_ID
+                       year
                         ,Nameintervention.getText().toString(),Quantity.getText().toString(),
-                        unitintervention.getText().toString(),ammountintervention.getText().toString());
+                        unitintervention.getText().toString(),ammountintervention.getText().toString(),FAMILY_ID);
 
             }
         });
@@ -261,13 +261,14 @@ public class Cropintervention extends DialogFragment {
 
     public void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] heroes = new String[jsonArray.length()];
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            list2.add(obj.getString("name"));
+            list2.add(obj.getString("crop_name"));
         }
 
     }
+
 
 
 

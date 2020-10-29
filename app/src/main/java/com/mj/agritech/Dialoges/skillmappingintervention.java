@@ -9,8 +9,8 @@ import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.interventiondata;
 
 public class skillmappingintervention extends DialogFragment {
     EditText nameoftheperson,professional,training,institute,annualincome;
@@ -50,8 +50,8 @@ public class skillmappingintervention extends DialogFragment {
 
 
                 String type = "skillmapping";
-                Familytable familytable = new Familytable(getContext());
-                familytable.execute(type,nameoftheperson.getText().toString(),
+                interventiondata interventiondata = new interventiondata(getContext());
+                interventiondata.execute(type,nameoftheperson.getText().toString(),
                         professional.getText().toString(),training.getText().toString() ,
                         institute.getText().toString(),annualincome.getText().toString(),
                         year,

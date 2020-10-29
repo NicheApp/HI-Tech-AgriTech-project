@@ -95,7 +95,7 @@ EditText Numbers,Annualincomelivestock,Rearing,Netannual;
 
 
                 String type = "livestock";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a,Numbers.getText().toString(),
                         Annualincomelivestock.getText().toString(),Rearing.getText().toString() ,
                         Netannual.getText().toString(),FAMILY_ID);

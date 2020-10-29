@@ -3,23 +3,13 @@ package com.mj.agritech;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,8 +20,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import static com.mj.agritech.RegistrationActivity.progressBar2;
 
 public class showdetailsbackground extends AsyncTask<String,Void,String> {
     Context context;
@@ -48,7 +36,7 @@ public class showdetailsbackground extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... voids) {
 
-        String login_url= "http://192.168.43.151/retrievedata.php";
+        String login_url= "https://theagriculture.tech/and_files/retrievedata.php";
         if(true){
             try {
 

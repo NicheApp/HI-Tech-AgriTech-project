@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
 import com.mj.agritech.interventiondata;
 

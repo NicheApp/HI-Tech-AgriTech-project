@@ -79,7 +79,7 @@ public IncomeDetailsDialog(String FAMILY_ID)
                 String b= list2.get(spinner2.getSelectedItemPosition());
 
                 String type = "incomedetails";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a, b, baselinedays.getText().toString(), familymem.getText().toString(),annualincome.getText().toString(),FAMILY_ID);
 
             }

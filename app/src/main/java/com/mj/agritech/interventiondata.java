@@ -2,18 +2,11 @@ package com.mj.agritech;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import org.json.JSONObject;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,8 +17,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import static com.mj.agritech.RegistrationActivity.progressBar2;
 
 public class interventiondata extends AsyncTask<String,Void,String> {
     Context context;
@@ -50,7 +41,7 @@ public class interventiondata extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... voids) {
         type= voids[0];
-        login_url= "http://192.168.43.151/interventiondetails.php";
+        login_url= "https://theagriculture.tech/and_files/interventiondetails.php";
         if(true){
             try {
 
@@ -77,11 +68,13 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("ttl_expenditure", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8") + "&"
                                     + URLEncoder.encode("cultivation_cost", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8") + "&"
                                     + URLEncoder.encode("net_income", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8") + "&"
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8") + "&"
                                     + URLEncoder.encode("intv_name", "UTF-8") + "=" + URLEncoder.encode(voids[12], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_qty", "UTF-8") + "=" + URLEncoder.encode(voids[13], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_unit", "UTF-8") + "=" + URLEncoder.encode(voids[14], "UTF-8")+ "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[15], "UTF-8");
+                                    + "&"
+                                    + URLEncoder.encode("intv_value", "UTF-8") + "=" + URLEncoder.encode(voids[15], "UTF-8")+ "&"
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[16], "UTF-8");
 }
 
                 else if(type.equals("livestock"))
@@ -93,11 +86,13 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
                                     + URLEncoder.encode("cost", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("net_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")+ "&"
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_name", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_qty", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8")+ "&"
                                     + URLEncoder.encode("intv_unit", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8")+ "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8") ;
+                                    + "&"
+                                    + URLEncoder.encode("intv_value", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8")+ "&"
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8") ;
 }
 
                 else if(type.equals("allied"))
@@ -118,12 +113,10 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("net_annual", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8")
                                     + "&"
 
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8")
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8")
                                     + "&"
-                                    + URLEncoder.encode("intv_name", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8")+ "&"
-                                    + URLEncoder.encode("intv_qty", "UTF-8") + "=" + URLEncoder.encode(voids[12], "UTF-8")+ "&"
-                                    + URLEncoder.encode("intv_unit", "UTF-8") + "=" + URLEncoder.encode(voids[13], "UTF-8")+ "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[14], "UTF-8");
+                                    + URLEncoder.encode("intv_value", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8")   + "&"
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[12], "UTF-8");
 }
 
                 else if(type.equals("daily_wage"))
@@ -139,8 +132,8 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
                                     + "&"
-                                    + "&"
-                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8")
+
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8")   + "&"
                                     + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8") ;
 }
                 else if(type.equals("skillmapping"))
@@ -153,7 +146,7 @@ public class interventiondata extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("institute", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
                                     + "&"
-                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
+                                    + URLEncoder.encode("intv_year", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") + "&"
                                     + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
 }
                 else if(type.equals("enterprise_details"))
@@ -210,36 +203,37 @@ public class interventiondata extends AsyncTask<String,Void,String> {
     }
     @Override
     protected void onPreExecute() {
-        // alertDialog=new AlertDialog.Builder(context).create();
-        //alertDialog.setTitle("Login Status");
+
 
     }
 
     @Override
     protected void onPostExecute(String result) {
 
-        Log.i("----------------",result);
+
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
-        String s1="true";
+        String s1="false";
         if(s1.compareTo(result)==0){
 
-            Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
-            //Toast.makeText(context,"Registration failed",Toast.LENGTH_SHORT).show();
-
+            new StyleableToast
+                    .Builder(context)
+                    .text("Something Went Wrong!")
+                    .textColor(Color.WHITE)
+                    .backgroundColor(Color.RED)
+                    .show();
         }
         else{
-    Log.i("----------",result);
 
-           // Toast.makeText(context,"Registration success",Toast.LENGTH_SHORT).show();
+            new StyleableToast
+                    .Builder(context)
+                    .text("Data Added!")
+                    .textColor(Color.WHITE)
+                    .backgroundColor(Color.BLUE).iconStart(getIcon())
+                    .show();
 
-            // alertDialog.setMessage(result);
-            //alertDialog.show();
         }
 
-
-        // alertDialog.setMessage(result);
-        //alertDialog.show();
     }
 
     @Override
@@ -247,5 +241,11 @@ public class interventiondata extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 
-
+    public int getIcon() {
+        if (android.os.Build.VERSION.SDK_INT >= 27) {
+            return R.drawable.ic_baseline_done_24;
+        } else {
+            return R.drawable.ic_baseline_done_24;
+        }
+    }
 }

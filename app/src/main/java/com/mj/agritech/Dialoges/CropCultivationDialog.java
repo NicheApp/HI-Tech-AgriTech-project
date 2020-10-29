@@ -17,7 +17,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
-import com.mj.agritech.interventiondata;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,14 +61,12 @@ public class CropCultivationDialog extends DialogFragment {
 
         final Spinner spinner1 = v.findViewById(R.id.cropcategory);
         final Spinner spinner2 =  v.findViewById(R.id.cropsubcategory);
-          spinner1.setPrompt("Crop Category");
-          spinner2.setPrompt("Choose Crop");
           final List<String> list = new ArrayList<String>();
           list.add("Crop Category");
           list.add("Kharif");
           list.add("Rabi");
           list.add("Zaid");
-        getJSON("http://192.168.43.151/crop_cultivation.php");
+        getJSON("https://theagriculture.tech/and_files/crop_cultivation.php");
        list2 = new ArrayList<String>();
        list2.add("Choose Crop");
 
@@ -191,8 +188,8 @@ public class CropCultivationDialog extends DialogFragment {
                String b= list2.get( spinner2.getSelectedItemPosition());
 
                 String type = "crop_cultivation";
-                interventiondata interventiondata = new interventiondata(getContext());
-                interventiondata .execute(type, a, b,Cultivatedarea.getText().toString(),
+               Familytable familytable= new Familytable(getContext(),v);
+                familytable .execute(type, a, b,Cultivatedarea.getText().toString(),
                         Totalproduction.getText().toString(),Yield.getText().toString() ,
                         Marketrate.getText().toString(),Totalincome.getText().toString(),
                         Expenditure.getText().toString(),CostofCultivation.getText().toString(),

@@ -94,7 +94,7 @@ public class LandHolding extends DialogFragment {
                 String c= list3.get(spinner3.getSelectedItemPosition());
 
                 String type = "land_holding";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a, b,totalland.getText().toString(),irrigatd.getText().toString(), c,perc.getText().toString() ,FAMILY_ID);
 
             }

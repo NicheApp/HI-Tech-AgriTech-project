@@ -6,10 +6,9 @@
     >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="352dp"
-        android:layout_height="400dp"
-        android:layout_marginBottom="135dp"
-        android:layout_marginTop="150sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
         android:layout_marginRight="30sp"
         android:layout_marginLeft="30sp"
         >
@@ -18,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shadow">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80sp"
                 android:orientation="vertical"
@@ -29,15 +28,15 @@
                     android:layout_width="100sp"
                     android:layout_height="80sp"
                     android:src="@drawable/agritech_logo"
-                    android:layout_marginLeft="119sp"/>
+                    android:layout_centerHorizontal="true"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="80sp">
             <EditText
                 android:id="@+id/ed1"
@@ -50,6 +49,7 @@
             <EditText
                 android:id="@+id/ed2"
                 android:hint="Your password / पासवर्ड"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="95sp"
@@ -57,13 +57,12 @@
                 android:layout_marginRight="20sp"/>
 
             <TextView
-                android:layout_width="300dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="140dp"
                 android:text="Forgot Password?"
-                android:textColor="#5684EC"
-                android:layout_marginLeft="190dp"
-                android:layout_marginRight="5dp"/>
+                android:textColor="#5684EC" />
 
             <Button
                 android:id="@+id/signin"
@@ -89,9 +88,9 @@
                 android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:text="Not a member?"
-                android:layout_marginLeft="150dp"
+
                 android:layout_marginTop="270dp"
-                android:layout_marginRight="50dp"
+                android:layout_centerHorizontal="true"
                 />
             <TextView
                 android:id="@+id/textView8"
@@ -99,9 +98,10 @@
                 android:layout_height="25dp"
                 android:text="Sign Up"
                 android:textColor="#5684EC"
-                android:layout_marginLeft="250dp"
+
+               android:layout_alignParentRight="true"
                 android:layout_marginTop="270dp"
-                android:layout_marginRight="30dp"
+
                 />
 
             <ProgressBar

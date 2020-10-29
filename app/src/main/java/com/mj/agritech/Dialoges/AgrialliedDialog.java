@@ -106,7 +106,7 @@ Annualexp.addTextChangedListener(new TextWatcher() {
 
 
                 String type = "allied";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a,Nameintervention.getText().toString(),
                         Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
                         Areaundercultivation.getText().toString(),Production.getText().toString(),

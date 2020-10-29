@@ -111,7 +111,7 @@ EditText Microenterprice,enterpenuername,nameofperson,expenditure,annualincome,n
                 String b=  spinner2.getSelectedItem().toString();
 
                 String type = "enterprise_details";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type,Microenterprice.getText().toString(),
                         enterpenuername.getText().toString(),
                         nameofperson.getText().toString() ,

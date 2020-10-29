@@ -17,12 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.mj.agritech.Dialoges.Alliedintervention;
 import com.mj.agritech.Dialoges.Cropintervention;
-import com.mj.agritech.Dialoges.DailyWageDialoge;
 import com.mj.agritech.Dialoges.Enterpriseintervention;
-import com.mj.agritech.Dialoges.SkillMappingdialog;
 import com.mj.agritech.Dialoges.dailywageintervention;
 import com.mj.agritech.Dialoges.livestockintervention;
-import com.mj.agritech.Dialoges.locationdialog;
 import com.mj.agritech.Dialoges.skillmappingintervention;
 
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ public class Farmer {
     private String farmername;
     private String farmerphone;
     private String farmeraddress;
-
+    private String res_id;
 
 
 
@@ -14,13 +14,14 @@ public class Farmer {
     {
 
     }
-    public Farmer(String farmername,String farmerphone,String farmeraddress)
+    public Farmer(String farmername,String farmerphone,String farmeraddress,String res_id)
     {if(farmername.trim().equals(""))
     {farmername="No Name"; }
 
         this. farmername=farmername;
         this.farmerphone=farmerphone;
         this.farmeraddress=farmeraddress;
+        this.res_id=res_id;
 
     }
 
@@ -48,4 +49,12 @@ public class Farmer {
     public void setFarmeraddress(String farmeraddress) {
         this.farmeraddress = farmeraddress;
     }
+    public String getRes_id() {
+        return res_id;
+    }
+
+    public void setRes_id(String res_id) {
+        this.res_id= res_id;
+    }
+
 }

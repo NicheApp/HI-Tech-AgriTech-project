@@ -40,7 +40,7 @@ public class SkillMappingdialog extends DialogFragment {
         submitquery=v.findViewById(R.id.submitlocation);
 
 
-        // Do all the stuff to initialize your custom view
+
 
 
         submitquery.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class SkillMappingdialog extends DialogFragment {
 
 
                 String type = "skillmapping";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type,nameoftheperson.getText().toString(),
                         professional.getText().toString(),training.getText().toString() ,
                         institute.getText().toString(),annualincome.getText().toString(),

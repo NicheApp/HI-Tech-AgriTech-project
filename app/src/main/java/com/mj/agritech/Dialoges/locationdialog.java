@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
-import com.mj.agritech.Registrationbackground;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +102,7 @@ public locationdialog(String FAMILY_ID)
             String g=  gp.getText().toString();
             String vl=  village.getText().toString();
                 String type = "location";
-                Familytable familytable = new Familytable(getContext());
+                Familytable familytable = new Familytable(getContext(),v);
                 familytable.execute(type, a, b, c, bl,g,vl,FAMILY_ID);
 
             }
