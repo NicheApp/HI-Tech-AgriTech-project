@@ -59,12 +59,9 @@ public class showdata extends DialogFragment {
 for(int i=0;i<jsonArray.length();i++)
 {
     JSONObject obj = jsonArray.getJSONObject(i);
-    ls.add("TSRDS_op_area: " +obj.getString("TSRDS_op_area"));
-    ls.add("year_of_BLS: " +obj.getString("year_of_BLS"));
-    ls.add("gp:" +obj.getString("gp"));
+    ls.add("TSRDS_op_area: " +obj.getString("TSRDS_op_area")+"\nyear_of_BLS: " +obj.getString("year_of_BLS")+
+            "\ngp:" +obj.getString("gp") +"\nBlock:" +obj.getString("block")+"Dist: " +obj.getString("dist"));
 
-    ls.add("Block:" +obj.getString("block"));
-    ls.add("Dist: " +obj.getString("dist"));
 
 
 }
