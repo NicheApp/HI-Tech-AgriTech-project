@@ -1,5 +1,6 @@
 package com.mj.agritech;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,13 +20,19 @@ import java.util.List;
 
 public class showdata extends DialogFragment {
     ListView listView;
-    String s,type;
-
-    showdata(String s, String type)
+    String s,type,Family_id;
+    int position;
+    Context ctx;
+    FragmentManager fm;
+    showdata(String s, String type, int position , Context ctx, FragmentManager fm,String Family_id)
     {
 
         this.s=s;
         this.type=type;
+        this.position=position;
+        this.ctx=ctx;
+        this.fm=fm;
+        this.Family_id=Family_id;
 
     }
     @Override
@@ -53,59 +61,73 @@ public class showdata extends DialogFragment {
     private void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
         List<String> ls=new ArrayList<String>();
+        List<String> ls2=new ArrayList<String>();
         if(type.equals("location")) {
          //   if(ls.size()>1)
           //  {ls.clear();}
 for(int i=0;i<jsonArray.length();i++)
 {
+    if(ls2.size()>1)
+    {ls2.clear();}
+    if(ls.size()>1)
+    {ls.clear();}
     JSONObject obj = jsonArray.getJSONObject(i);
-    ls.add("TSRDS_op_area: " +obj.getString("TSRDS_op_area")+"\nyear_of_BLS: " +obj.getString("year_of_BLS")+
-            "\ngp:" +obj.getString("gp") +"\nBlock:" +obj.getString("block")+"Dist: " +obj.getString("dist"));
-
-
+    ls2.add("TSRDS Op Area: " +obj.getString("TSRDS_op_area")+"\n\nState: " +obj.getString("state")+"\n\nYear of BLS: " +obj.getString("year_of_BLS")+
+            "\n\nGP:" +obj.getString("gp") +"\n\nBlock:" +obj.getString("block")+"\n\nDist: " +obj.getString("dist")+
+            "\n\nVillage: " +obj.getString("village"));
+    ls.add(obj.getString("TSRDS_op_area"));
+    ls.add(obj.getString("year_of_BLS"));
+    ls.add(obj.getString("gp"));
+    ls.add(obj.getString("block"));
+    ls.add(obj.getString("dist"));
+    ls.add(obj.getString("village"));
 
 }
-
-
-
         }
+
         else if(type.equals("info"))
-        {
-           // if(ls.size()>1)
-            //{ls.clear();}
+        {  if(ls2.size()>1)
+        {ls2.clear();}
+            if(ls.size()>1)
+            {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             {
                 JSONObject obj = jsonArray.getJSONObject(i);
-                ls.add(obj.getString("year_of_BLS"));
-                ls.add("Date: "+obj.getString("date"));
-                ls.add("House Type: "+obj.getString("house_type"));
-                ls.add("Toilet: "+obj.getString("toilet"));
-                ls.add("Caste: "+obj.getString("caste"));
 
-
-            }
+                ls2.add("Date: "+obj.getString("date")+"\n\nHouse Type: "+obj.getString("house_type")+
+                        "\n\nToilet: "+obj.getString("toilet")+"\n\nCaste: "+obj.getString("caste")+"\n\nYear of BLS: " +obj.getString("year_of_BLS"));
+               ls.add(obj.getString("date"));
+               ls.add(obj.getString("house_type"));
+               ls.add(obj.getString("toilet"));
+               ls.add(obj.getString("caste"));
+               ls.add(obj.getString("year_of_BLS"));
+ }
 
 
 
         }
         else if(type.equals("familymember"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
-
 
             for(int i=0;i<jsonArray.length();i++)
             {  JSONObject obj = jsonArray.getJSONObject(i);
 
-                ls.add("name:" +obj.getString("name"));
-                ls.add("caste:" +obj.getString("caste"));
-                ls.add("age:" +obj.getString("age"));
-                ls.add("sex:" +obj.getString("sex"));
-                ls.add("ed_status:" +obj.getString("ed_status"));
-                ls.add("skill:" +obj.getString("skill"));
-                ls.add("mobile:" +obj.getString("mobile"));
-                ls.add("edu_other:" +obj.getString("edu_other"));
-                ls.add("-----------------------");
+                ls2.add("Name:" +obj.getString("name")+"\n\nCaste:" +obj.getString("caste")+
+                        "\n\nAge:" +obj.getString("age") + "\n\nSex:" +obj.getString("sex") +
+                        "\n\nEd status:" +obj.getString("ed_status")+"\n\nSkill:" +obj.getString("skill")+
+                                "\n\nMobile:" +obj.getString("mobile")+"\n\nEdu other:" +obj.getString("edu_other"));
+                ls.add(obj.getString("name"));
+                ls.add(obj.getString("caste"));
+                ls.add(obj.getString("age"));
+                ls.add(obj.getString("sex"));
+                ls.add(obj.getString("ed_status"));
+                ls.add(obj.getString("skill"));
+                ls.add(obj.getString("mobile"));
+                ls.add(obj.getString("edu_other"));
             }
 
 
@@ -116,16 +138,22 @@ for(int i=0;i<jsonArray.length();i++)
 
         else if(type.equals("incomedetails"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             {  JSONObject obj = jsonArray.getJSONObject(i);
 
-                ls.add("occupation:" +obj.getString("occupation"));
-                ls.add("days:" +obj.getString("days"));
-                ls.add("members_involved:" +obj.getString("members_involved"));
-                ls.add("annual_income:" +obj.getString("annual_income"));
-                ls.add("primary_secondary:" +obj.getString("primary_secondary"));
+
+            ls2.add("Occupation: " +obj.getString("occupation")+"\n\nDays: " +obj.getString("days")+
+                    "\n\nMembers Involved: " +obj.getString("members_involved") +"\n\nAnnual Income: " +obj.getString("annual_income")
+                       + "\n\nPrimary secondary:" +obj.getString("primary_secondary"));
+                ls.add(obj.getString("occupation"));
+                ls.add(obj.getString("days"));
+                ls.add(obj.getString("members_involved"));
+                ls.add(obj.getString("annual_income"));
+                ls.add(obj.getString("primary_secondary"));
 
 
             }
@@ -137,11 +165,19 @@ for(int i=0;i<jsonArray.length();i++)
 
         else if(type.equals("land_holding"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
 
             for(int i=0;i<jsonArray.length();i++)
             {   JSONObject obj = jsonArray.getJSONObject(i);
+
+            ls2.add("Land Owned:" +obj.getString("land_owned")+"\n\nFamily id:" +obj.getString("family_id")
+            +"\n\nIrrigated land:" +obj.getString("irrigated_land")+"\n\nLand_category:" +obj.getString("land_category")+
+                    "\nIrrigated %:" +obj.getString("irrigated_percentage")+ "\n\nOwnership Type: " +obj.getString("ownership_type")
+            +"\n\nIrrigation source:" +obj.getString("irrigation_source"));
+
                 ls.add("land_owned:" +obj.getString("land_owned"));
                 ls.add("family_id:" +obj.getString("family_id"));
                 ls.add("irrigated_land:" +obj.getString("irrigated_land"));
@@ -161,10 +197,22 @@ for(int i=0;i<jsonArray.length();i++)
 
         else if(type.equals("crop_cultivation"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
+
             for(int i=0;i<jsonArray.length();i++)
             {   JSONObject obj = jsonArray.getJSONObject(i);
+
+                ls2.add("Category:" +obj.getString("cat")+"\n\nCrop Name:" +obj.getString("name")
+                        +"\n\nCultivated_area:" +obj.getString("cultivated_area")+
+                        "\n\nYield:" +obj.getString("yield")+"\n\nTotal Production:" +obj.getString("ttl_prod")+
+                        "\n\nMarket Rate:" +obj.getString("market_rate")+ "\n\nTotal income:" +obj.getString("total_income")
+                +"\n\nCultivation cost:" +obj.getString("cultivation_cost")+"\n\nNet_income:" +obj.getString("net_income")
+                +"\n\nBsl_crop:" +obj.getString("bsl_crop")+
+                        "\n\nTotal expenditure:" +obj.getString("ttl_expenditure") );
+
                 ls.add("cat:" +obj.getString("cat"));
                 ls.add("cultivated_area:" +obj.getString("cultivated_area"));
                 ls.add("yield:" +obj.getString("yield"));
@@ -184,10 +232,17 @@ for(int i=0;i<jsonArray.length();i++)
 
         else if(type.equals("livestock"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             {   JSONObject obj = jsonArray.getJSONObject(i);
+
+            ls2.add("Number:" +obj.getString("number")+"\n\nName:" +obj.getString("name")+
+                    "\n\nCost:" +obj.getString("cost")+"\n\nAnnual_income:" +obj.getString("annual_income")+
+                    "\n\nNet_income:" +obj.getString("net_income") );
+
                 ls.add("number:" +obj.getString("number"));
                 ls.add("name:" +obj.getString("name"));
                 ls.add("cost:" +obj.getString("cost"));
@@ -202,10 +257,19 @@ for(int i=0;i<jsonArray.length();i++)
 
         else if(type.equals("allied"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             {   JSONObject obj = jsonArray.getJSONObject(i);
+
+            ls2.add("Type: " +obj.getString("type")+"\n\nArea: " +obj.getString("area")+"\n\nProduction: " +obj.getString("production")+
+                    "\n\nAnnual income:v" +obj.getString("ann_income")+"\n\nAnnual Exp: " +obj.getString("ann_exp")+
+                    "\n\nNet nnual: " +obj.getString("net_annual")+"\n\nIntervention year: " +obj.getString("intv_name")+
+                    "\n\nIntervention Quantity: " +obj.getString("intv_qty")+"\n\nIntervention Unit: " +obj.getString("intv_unit")+ "Bsl allied: " +
+                    obj.getString("bsl_allied"));
+
                 ls.add("area:" +obj.getString("area"));
                 ls.add("production:" +obj.getString("production"));
                 ls.add("ann_income:" +obj.getString("ann_income"));
@@ -214,21 +278,25 @@ for(int i=0;i<jsonArray.length();i++)
                 ls.add("intv_name:" +obj.getString("intv_name"));
                 ls.add("intv_qty:" +obj.getString("intv_qty"));
                 ls.add("intv_unit:" +obj.getString("intv_unit"));
-                ls.add(",bsl_allied:" +obj.getString("bsl_allied"));
+                ls.add("bsl_allied:" +obj.getString("bsl_allied"));
             }
-
-
-
-
 
         }
 
         else if(type.equals("daily_wage"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             {  JSONObject obj = jsonArray.getJSONObject(i);
+
+            ls2.add("Members count: " +obj.getString("members_count")+"\n\nDays Involved: " +obj.getString("days_involved")+
+                    "\n\nPlace: " +obj.getString("place")+"\n\nDistance: " +obj.getString("distance")+
+                    "\n\nIntv year: " +obj.getString("intv_year")+ "\n\nAnnual income: " +obj.getString("annual_income")+
+                    "\n\nWage: " +obj.getString("wage"));
+
                 ls.add("members_count:" +obj.getString("members_count"));
                 ls.add("days_involved:" +obj.getString("days_involved"));
                 ls.add("place:" +obj.getString("place"));
@@ -243,11 +311,20 @@ for(int i=0;i<jsonArray.length();i++)
         }
         else if(type.equals("skillmapping"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
             if(ls.size()>1)
             {ls.clear();}
 
+
+
             for(int i=0;i<jsonArray.length();i++)
             {  JSONObject obj = jsonArray.getJSONObject(i);
+
+                ls2.add("Name:b" +obj.getString("name")+"\n\nSkill: " +obj.getString("skill")+
+                        "\n\nAnnual Income:" +obj.getString("annual_income")+ "\n\nInstitute: " +obj.getString("institute")+
+                        "\n\nDuration: " +obj.getString("duration"));
+
                 ls.add("name:" +obj.getString("name"));
                 ls.add("skill:" +obj.getString("skill"));
                 ls.add("annual_income:" +obj.getString("annual_income"));
@@ -259,10 +336,21 @@ for(int i=0;i<jsonArray.length();i++)
         }
         else if(type.equals("enterprise_details"))
         {
+            if(ls2.size()>1)
+            {ls2.clear();}
+
             if(ls.size()>1)
             {ls.clear();}
             for(int i=0;i<jsonArray.length();i++)
             { JSONObject obj = jsonArray.getJSONObject(i);
+
+            ls2.add("Enterprise Name: " +obj.getString("enterprise_name")+
+                    "\n\nEnterpreneur Name: " +obj.getString("enterpreneur_name")+"\n\nAnnual exp: " +obj.getString("annual_exp")
+            +"\n\nAnnual Income: " +obj.getString("annual_income")+"\n\nNet Income: " +obj.getString("net_income")+
+                    "\n\nReg status: " +obj.getString("reg_status")+"\n\nPerson Employed: " +obj.getString("person_employed")+
+                    "\n\nIntv year: " +obj.getString("intv_year")+"\n\nIntv qty: " +obj.getString("intv_qty")+
+                    "\n\nIntv_unit: " +obj.getString("intv_unit") );
+
                 ls.add("enterprise_name:" +obj.getString("enterprise_name"));
                 ls.add("enterpreneur_name:" +obj.getString("enterpreneur_name"));
                 ls.add("annual_exp:" +obj.getString("annual_exp"));
@@ -271,7 +359,7 @@ for(int i=0;i<jsonArray.length();i++)
                 ls.add("reg_status:" +obj.getString("reg_status"));
 
                 ls.add("person_employed:" +obj.getString("person_employed"));
-                ls.add("bsl_ent,intv_year:" +obj.getString("bsl_ent,intv_year"));
+                ls.add("intv_year:" +obj.getString("intv_year"));
                 ls.add("intv_name:" +obj.getString("intv_name"));
                 ls.add("intv_qty:" +obj.getString("intv_qty"));
                 ls.add("intv_unit:" +obj.getString("intv_unit"));
@@ -283,7 +371,7 @@ for(int i=0;i<jsonArray.length();i++)
         }
 
 
-        showdataadapter adapter = new showdataadapter(ls, getContext());
+        showdataadapter adapter = new showdataadapter(ls2, ctx,position,fm,Family_id,ls,jsonArray);
 
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, ls);
         listView.setAdapter(adapter);

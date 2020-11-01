@@ -50,6 +50,7 @@ public class skillmappingintervention extends DialogFragment {
 
 
                 String type = "skillmapping";
+
                 interventiondata interventiondata = new interventiondata(getContext());
                 interventiondata.execute(type,nameoftheperson.getText().toString(),
                         professional.getText().toString(),training.getText().toString() ,

@@ -1,5 +1,6 @@
 package com.mj.agritech;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +69,10 @@ public class baselineadapter extends RecyclerView.Adapter<baselineadapter.ImageV
             public void onClick(View v) {
 
 List<String> ls=new ArrayList<>();
+
 ls.add("location");ls.add("info");ls.add("familymember");ls.add("incomedetails");ls.add("land_holding");ls.add("crop_cultivation");
 ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping");ls.add("enterprise_details");
-                   showdetailsbackground showdetailsbackground=new showdetailsbackground(mContext,fm);
+                   showdetailsbackground showdetailsbackground=new showdetailsbackground(mContext,fm,position);
                         showdetailsbackground.execute(ls.get(position),FAMILY_ID);
 
             }
@@ -81,7 +83,8 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                // Intent intent=new Intent(mContext,Baseline.class);
                // mContext.startActivity(intent);
 
-
+                List<String> lsnew=new ArrayList<>();
+                Log.i("lsnew size --- ", lsnew.size()+"");
                 if(position==0){
                     FragmentTransaction ft = fm.beginTransaction();
                     Fragment prev = fm.findFragmentByTag("dialog");
@@ -89,7 +92,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new locationdialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new locationdialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
                 }
                 if(position==1){
@@ -99,7 +102,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new GeneralInfoDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new GeneralInfoDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");}
 
                 if(position==2){
@@ -109,8 +112,9 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new FamilymemberDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new FamilymemberDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");}
+
                 if(position==3){
                     FragmentTransaction ft = fm.beginTransaction();
                     Fragment prev = fm.findFragmentByTag("dialog");
@@ -118,7 +122,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new IncomeDetailsDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new IncomeDetailsDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
 
                    // dialogFragment = new IncomeDetailsDialog();
@@ -130,7 +134,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new LandHolding(FAMILY_ID);
+                    DialogFragment dialogFragment = new LandHolding(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new LandHolding();
                 }
@@ -141,7 +145,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new CropCultivationDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new CropCultivationDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new CropCultivationDialog();
                 }
@@ -152,7 +156,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new livestockDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new livestockDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new livestockDialog();
@@ -165,7 +169,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new AgrialliedDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new AgrialliedDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new AgrialliedDialog();
@@ -177,7 +181,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID,2013+"");
+                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID,2013+"",lsnew,fm);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new DailyWageDialoge();
                 }
@@ -188,7 +192,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID,2012+"");
+                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID,2012+"",lsnew,fm);
                     dialogFragment.show(ft, "dialog");
 
                 //    dialogFragment = new SkillMappingdialog();
@@ -200,7 +204,7 @@ ls.add("livestock");ls.add("allied");ls.add("daily_wage");ls.add("skillmapping")
                         ft.remove(prev);
                     }
                     ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new EnterpriseDetailsDialog(FAMILY_ID);
+                    DialogFragment dialogFragment = new EnterpriseDetailsDialog(FAMILY_ID,lsnew,fm);
                     dialogFragment.show(ft, "dialog");
                 //    dialogFragment = new EnterpriseDetailsDialog();
                 }

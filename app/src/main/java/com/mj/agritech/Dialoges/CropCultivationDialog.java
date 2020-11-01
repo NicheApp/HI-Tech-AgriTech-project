@@ -14,9 +14,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,15 +31,24 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
+
 public class CropCultivationDialog extends DialogFragment {
     String FAMILY_ID;
     Button submitquery;
     List<String> list2;
-    public CropCultivationDialog(String FAMILY_ID)
+    List<String> list1;
+    int entry_id;
+    FragmentManager fm;
+    public CropCultivationDialog(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.list1=list1;
+        this.fm=fm;
 
     }
+
 
 
     EditText Totalproduction,Cultivatedarea,Yield,Marketrate,Totalincome,Expenditure,CostofCultivation,Netincome;
@@ -180,6 +191,34 @@ public class CropCultivationDialog extends DialogFragment {
 
             }
         });
+        if(list1.size()>0)
+        {
+
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+                Cultivatedarea.setText(obj.getString("cultivated_area"));
+                Totalproduction.setText(obj.getString("ttl_prod"));
+                Yield.setText(obj.getString("yield"));
+                Marketrate.setText(obj.getString("market_rate"));
+                Totalincome.setText(obj.getString("total_income"));
+                Expenditure.setText(obj.getString("ttl_expenditure"));
+                CostofCultivation.setText(obj.getString("cultivation_cost"));
+                Netincome.setText(obj.getString("net_income"));
+
+                int spinnerPosition = myAdapter.getPosition(obj.getString("cat"));
+                spinner1.setSelection(spinnerPosition);
+                entry_id=obj.getInt("entry_id");
+                list2.add(obj.getString("name"));
+                int spinnerPosition2 = myAdapter2.getPosition(obj.getString("name"));
+                spinner2.setSelection(spinnerPosition2);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
 
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,13 +227,33 @@ public class CropCultivationDialog extends DialogFragment {
                String b= list2.get( spinner2.getSelectedItemPosition());
 
                 String type = "crop_cultivation";
-               Familytable familytable= new Familytable(getContext(),v);
-                familytable .execute(type, a, b,Cultivatedarea.getText().toString(),
-                        Totalproduction.getText().toString(),Yield.getText().toString() ,
-                        Marketrate.getText().toString(),Totalincome.getText().toString(),
-                        Expenditure.getText().toString(),CostofCultivation.getText().toString(),
-                        Netincome.getText().toString(),
-                         FAMILY_ID);
+
+                if(list1.size()>0)
+                {
+                    UpdateBackground updateBackground = new UpdateBackground(getContext(), v);
+                    updateBackground.execute(type, a, b, Cultivatedarea.getText().toString(),
+                            Totalproduction.getText().toString(), Yield.getText().toString(),
+                            Marketrate.getText().toString(), Totalincome.getText().toString(),
+                            Expenditure.getText().toString(), CostofCultivation.getText().toString(),
+                            Netincome.getText().toString(),
+                            FAMILY_ID,entry_id+"");
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    fm.popBackStackImmediate();
+                    list1.clear();
+                }
+                else {
+
+
+                    Familytable familytable = new Familytable(getContext(), v);
+                    familytable.execute(type, a, b, Cultivatedarea.getText().toString(),
+                            Totalproduction.getText().toString(), Yield.getText().toString(),
+                            Marketrate.getText().toString(), Totalincome.getText().toString(),
+                            Expenditure.getText().toString(), CostofCultivation.getText().toString(),
+                            Netincome.getText().toString(),
+                            FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
 
             }
         });

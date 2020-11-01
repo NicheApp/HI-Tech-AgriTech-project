@@ -104,10 +104,10 @@ public class Alliedintervention extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String a=   spinner1.getSelectedItem().toString();
-
-
-
                 String type = "allied";
+
+
+
                 interventiondata interventiondata = new interventiondata(getContext());
                 interventiondata.execute(type, a,Nameintervention.getText().toString(),
                         Cityintervention.getText().toString(),Unitintervention.getText().toString() ,

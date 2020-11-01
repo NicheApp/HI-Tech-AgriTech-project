@@ -24,19 +24,22 @@ import java.net.URLEncoder;
 public class showdetailsbackground extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
+    int position;
     boolean except =false;
     public String type,family_id;
     public  FragmentManager fm;
-    showdetailsbackground(Context ctx,FragmentManager fm)
+    showdetailsbackground(Context ctx,FragmentManager fm,int position)
     {
         context=ctx;
         this.fm = fm;
+        this.position=position;
 
     }
     @Override
     protected String doInBackground(String... voids) {
 
         String login_url= "https://theagriculture.tech/and_files/retrievedata.php";
+        //String login_url= "http://192.168.43.151/retrievedata.php";
         if(true){
             try {
 
@@ -102,7 +105,7 @@ public class showdetailsbackground extends AsyncTask<String,Void,String> {
         }
         ft.addToBackStack(null);
 
-        DialogFragment dialogFragment = new showdata(result,type);
+        DialogFragment dialogFragment = new showdata(result,type,position,context,fm,family_id);
         dialogFragment.show(ft, "dialog");
 
 

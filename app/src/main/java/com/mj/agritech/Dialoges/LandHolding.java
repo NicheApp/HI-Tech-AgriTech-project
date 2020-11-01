@@ -10,20 +10,34 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
 
 public class LandHolding extends DialogFragment {
     String FAMILY_ID;
     Button submitquery;
     EditText totalland,irrigatd,perc;
-    public LandHolding(String FAMILY_ID)
+    List<String> list1;
+    int entry_id;
+    FragmentManager fm;
+    public LandHolding(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.list1=list1;
+        this.fm=fm;
 
     }
 
@@ -85,6 +99,33 @@ public class LandHolding extends DialogFragment {
         spinner3.setAdapter(myAdapter3);
 
 
+        if( list1.size() > 0)
+        {
+
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+               totalland.setText(obj.getString("land_owned"));
+               perc.setText(obj.getString("irrigated_percentage"));
+               irrigatd.setText(obj.getString("irrigated_land"));
+
+                int spinnerPosition = myAdapter.getPosition(obj.getString("ownership_type"));
+                spinner1.setSelection(spinnerPosition);
+                int spinnerPosition1 = myAdapter2.getPosition(obj.getString("land_category"));
+                spinner2.setSelection(spinnerPosition1);
+                int spinnerPosition2 = myAdapter3.getPosition(obj.getString("irrigation_source"));
+                spinner3.setSelection(spinnerPosition2);
+                entry_id=obj.getInt("entry_id");
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+
 
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +135,25 @@ public class LandHolding extends DialogFragment {
                 String c= list3.get(spinner3.getSelectedItemPosition());
 
                 String type = "land_holding";
-                Familytable familytable = new Familytable(getContext(),v);
-                familytable.execute(type, a, b,totalland.getText().toString(),irrigatd.getText().toString(), c,perc.getText().toString() ,FAMILY_ID);
 
+                if(list1.size() > 0)
+                {
+                    UpdateBackground updateBackground = new UpdateBackground(getContext(), v);
+                    updateBackground.execute(type, a, b, totalland.getText().toString(), irrigatd.getText().toString(), c, perc.getText().toString(), FAMILY_ID,
+                            entry_id+"");
+
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    list1.clear();
+                    fm.popBackStackImmediate();
+                }
+                else {
+
+
+                    Familytable familytable = new Familytable(getContext(), v);
+                    familytable.execute(type, a, b, totalland.getText().toString(), irrigatd.getText().toString(), c, perc.getText().toString(), FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
             }
         });
         return v;

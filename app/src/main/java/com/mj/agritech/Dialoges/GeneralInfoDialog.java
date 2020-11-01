@@ -10,22 +10,37 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
 
 public class GeneralInfoDialog extends DialogFragment {
     String FAMILY_ID;
     EditText baseline;
     Button submitquery;
-    public GeneralInfoDialog(String FAMILY_ID)
+    List<String> list1;
+    FragmentManager fm;
+
+    public GeneralInfoDialog(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
+        this.list1=list1;
+        this.fm=fm;
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,21 +98,73 @@ public class GeneralInfoDialog extends DialogFragment {
         spinner3.setAdapter(myAdapter3);
         myAdapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(myAdapter4);
+        if(list1.size()>0)
+        {
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+                if (list1.get(1)!=null) {
+                    int spinnerPosition = myAdapter2.getPosition(obj.getString("house_type"));
+                    spinner2.setSelection(spinnerPosition);
+                }
+                if (list1.get(2)!=null) {
+                    int spinnerPosition = myAdapter3.getPosition(list1.get(2));
+                    spinner3.setSelection(spinnerPosition);
+                }
 
+                if (list1.get(3)!=null) {
+                    int spinnerPosition = myAdapter.getPosition(list1.get(3));
+                    spinner1.setSelection(spinnerPosition);
+                }
+
+                if (list1.get(4)!=null) {
+                    int spinnerPosition = myAdapter4.getPosition(list1.get(4));
+                    spinner4.setSelection(spinnerPosition);
+                }
+                if (list1.get(0)!=null) {
+                    int spinnerPosition = myAdapter.getPosition(list1.get(0));
+                    spinner1.setSelection(spinnerPosition);
+                }
+
+                if (list1.get(4)!=null) {
+                    int spinnerPosition2 = myAdapter3.getPosition(list1.get(4));
+                    spinner3.setSelection(spinnerPosition2);
+                }
+             baseline.setText("date");
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
 
 
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a=   list.get(spinner1.getSelectedItemPosition());
+
+
+                String a= list.get(spinner1.getSelectedItemPosition());
                 String b= list2.get(spinner2.getSelectedItemPosition());
                 String c= list3.get(spinner3.getSelectedItemPosition());
                 String d= list4.get(spinner4.getSelectedItemPosition());
                 String baselinesurvey=baseline.getText().toString();
                 String type = "info";
-                Familytable familytable = new Familytable(getContext(),v);
-                familytable.execute(type, a, b, c, d,baselinesurvey,FAMILY_ID);
-
+                if(list1.size()>0)
+                {
+                    UpdateBackground updateBackground = new UpdateBackground(getContext(),v);
+                    updateBackground.execute(type, a, b, c, d,baselinesurvey,FAMILY_ID);
+                    fm.popBackStackImmediate();
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    list1.clear();
+                }
+                else {
+                    Familytable familytable = new Familytable(getContext(), v);
+                    familytable.execute(type, a, b, c, d, baselinesurvey, FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
             }
         });
 

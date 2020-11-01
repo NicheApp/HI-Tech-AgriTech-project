@@ -40,7 +40,8 @@ public class SearchBackground extends AsyncTask<String,String,String> {
     @Override
     protected String doInBackground(String... voids) {
 
-        String login_url= "https://theagriculture.tech/and_files/baseline.php";
+       String login_url= "https://theagriculture.tech/and_files/baseline.php";
+       // String login_url= "http://192.168.43.151/baseline.php";
         if(true){
             try {
 
@@ -58,7 +59,7 @@ public class SearchBackground extends AsyncTask<String,String,String> {
 
                 while((line=bufferedReader.readLine())!=null)
                 {
-                    Log.i("--------",line);
+
                     result+=line;
 
 
