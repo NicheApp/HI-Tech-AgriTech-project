@@ -1,5 +1,5 @@
 # AGRI TECH 
-## Download App from play store - https://play.google.com/store/apps/details?id=com.mj.agritech
+## Play Store  - https://play.google.com/store/apps/details?id=com.mj.agritech
 <p align="center">
   <img src="https://user-images.githubusercontent.com/47109963/94987136-8843d900-0581-11eb-953d-8c5ea22df209.png" width="300" title="hover text"> 
   <img src="https://user-images.githubusercontent.com/47109963/94987140-8bd76000-0581-11eb-961d-1014dda5f1c8.png" width="300" title="hover text">
