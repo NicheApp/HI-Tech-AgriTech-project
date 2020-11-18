@@ -61,7 +61,7 @@ public class searchadapter extends RecyclerView.Adapter<searchadapter.ImageViewH
         holder.intervention.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext,Interventionclass.class);
+                Intent intent=new Intent(mContext,Intervention.class);
                 intent.putExtra("id", mUploads.get(holder.getAdapterPosition()).getFarmerphone());
                 intent.putExtra("name", mUploads.get(holder.getAdapterPosition()).getFarmername());
                 mContext.startActivity(intent);

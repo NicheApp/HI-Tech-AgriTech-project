@@ -14,9 +14,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
 import com.mj.agritech.interventiondata;
+import com.mj.agritech.updateintervention;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,18 +33,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
+
 public class Cropintervention extends DialogFragment {
 
     List<String> list2;
     String FAMILY_ID,year;
     Button submitquery;
-    public Cropintervention (String FAMILY_ID,String year)
+    int entry_id;
+    List<String> list1;
+    FragmentManager fm;
+
+    public Cropintervention(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
-        this.year=year;
+        this.list1=list1;
+        this.fm=fm;
 
     }
-
 
     EditText Totalproduction,Cultivatedarea,Yield,Marketrate,Totalincome,Expenditure,CostofCultivation,Netincome;
     EditText Nameintervention,Quantity,unitintervention,ammountintervention;
@@ -191,7 +202,34 @@ public class Cropintervention extends DialogFragment {
 
             }
         });
+        if(list1.size()>0)
+        {
 
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+                Cultivatedarea.setText(obj.getString("cultivated_area"));
+                Totalproduction.setText(obj.getString("ttl_prod"));
+                Yield.setText(obj.getString("yield"));
+                Marketrate.setText(obj.getString("market_rate"));
+                Totalincome.setText(obj.getString("total_income"));
+                Expenditure.setText(obj.getString("ttl_expenditure"));
+                CostofCultivation.setText(obj.getString("cultivation_cost"));
+                Netincome.setText(obj.getString("net_income"));
+
+                int spinnerPosition = myAdapter.getPosition(obj.getString("cat"));
+                spinner1.setSelection(spinnerPosition);
+                entry_id=obj.getInt("entry_id");
+                list2.add(obj.getString("name"));
+                int spinnerPosition2 = myAdapter2.getPosition(obj.getString("name"));
+                spinner2.setSelection(spinnerPosition2);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,15 +238,35 @@ public class Cropintervention extends DialogFragment {
                 String a=  list.get( spinner1.getSelectedItemPosition());
                 String b= list2.get( spinner2.getSelectedItemPosition());
                 String type = "crop_cultivation";
-                interventiondata interventiondata = new interventiondata(getContext());
-                interventiondata.execute(type, a, b,Cultivatedarea.getText().toString(),
-                        Totalproduction.getText().toString(),Yield.getText().toString() ,
-                        Marketrate.getText().toString(),Totalincome.getText().toString(),
-                        Expenditure.getText().toString(),CostofCultivation.getText().toString(),
-                        Netincome.getText().toString(),
-                       year
-                        ,Nameintervention.getText().toString(),Quantity.getText().toString(),
-                        unitintervention.getText().toString(),ammountintervention.getText().toString(),FAMILY_ID);
+                if(list1.size()>0)
+                {
+                    updateintervention updateBackground = new updateintervention (getContext(), v);
+                    updateBackground.execute(type, a, b, Cultivatedarea.getText().toString(),
+                            Totalproduction.getText().toString(), Yield.getText().toString(),
+                            Marketrate.getText().toString(), Totalincome.getText().toString(),
+                            Expenditure.getText().toString(), CostofCultivation.getText().toString(),
+                            Netincome.getText().toString(),
+                            FAMILY_ID,entry_id+"");
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    fm.popBackStackImmediate();
+                    list1.clear();
+                }
+                else {
+
+
+                    interventiondata interventiondata = new interventiondata(getContext());
+                    interventiondata.execute(type, a, b,Cultivatedarea.getText().toString(),
+                            Totalproduction.getText().toString(),Yield.getText().toString() ,
+                            Marketrate.getText().toString(),Totalincome.getText().toString(),
+                            Expenditure.getText().toString(),CostofCultivation.getText().toString(),
+                            Netincome.getText().toString(),
+                            year
+                            ,Nameintervention.getText().toString(),Quantity.getText().toString(),
+                            unitintervention.getText().toString(),ammountintervention.getText().toString(),FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
+
 
             }
         });

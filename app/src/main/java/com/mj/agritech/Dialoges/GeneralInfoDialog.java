@@ -27,9 +27,10 @@ import static com.mj.agritech.showdataadapter.mainposition;
 import static com.mj.agritech.showdataadapter.showjsonarray;
 
 public class GeneralInfoDialog extends DialogFragment {
-    String FAMILY_ID;
+
     EditText baseline;
     Button submitquery;
+    String FAMILY_ID;
     List<String> list1;
     FragmentManager fm;
 

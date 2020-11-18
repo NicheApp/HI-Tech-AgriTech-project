@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Familytable extends AsyncTask<String,Void,String> {
+public class updateintervention extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
     boolean except =false;
@@ -35,7 +36,7 @@ public class Familytable extends AsyncTask<String,Void,String> {
     URL url;
     View view;
     public String user_name,user_age,user_phone,user_trds;
-    public Familytable(Context ctx,View v)
+    public updateintervention(Context ctx,View v)
     {
         context=ctx;
         view=v;
@@ -43,9 +44,8 @@ public class Familytable extends AsyncTask<String,Void,String> {
     }
     @Override
     protected String doInBackground(String... voids) {
-         type= voids[0];
-        login_url= "http://192.168.43.201/family.php";
-       // login_url= "http://192.168.43.151/family.php";
+        type= voids[0];
+        login_url= "http://192.168.43.201/updateintervention.php";
         if(true){
             try {
 
@@ -56,86 +56,8 @@ public class Familytable extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoInput(true);
                 outputStream=httpURLConnection.getOutputStream();
                 bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-                if(type.equals("location")) {
-                    post_data =
-                            URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                             + URLEncoder.encode("TSRDS_op_area", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
-                            + URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
-                            + URLEncoder.encode("dist", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                            + URLEncoder.encode("block", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
-                            + URLEncoder.encode("gp", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                            + URLEncoder.encode("village", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
-                            + "&"
-                            + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8");
 
-                    }
-                else if(type.equals("info"))
-                {
-                    post_data =
-                            URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                             + URLEncoder.encode("caste", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
-                            + URLEncoder.encode("house_type", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
-                            + URLEncoder.encode("toilet", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                            + URLEncoder.encode("year_of_BLS", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
-                            + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                            + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") ;
-
-
-                }
-                else if(type.equals("familymember"))
-                {
-                    post_data =
-                            URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                                    + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
-                                    + URLEncoder.encode("age", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
-                                    + URLEncoder.encode("sex", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                                    + URLEncoder.encode("caste", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
-                                    + URLEncoder.encode("skill", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("mobile", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
-                                    + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
-
-
-
-
-
-                }
-
-                                        else if(type.equals("incomedetails"))
-                {
-                    post_data =
-                            URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                                    + URLEncoder.encode("occupation", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
-                                    + URLEncoder.encode("primary_secondary", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
-                                    + URLEncoder.encode("days", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                                    + URLEncoder.encode("members_involved", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
-                                    + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") ;
-
-
-
-                }
-
-                else if(type.equals("land_holding"))
-                {
-                    post_data =
-                            URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
-                                    + URLEncoder.encode("ownership_type", "UTF-8") + "=" + URLEncoder.encode(voids[1], "UTF-8") + "&"
-                                    + URLEncoder.encode("land_category", "UTF-8") + "=" + URLEncoder.encode(voids[2], "UTF-8") + "&"
-                                    + URLEncoder.encode("land_owned", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
-                                    + URLEncoder.encode("irrigated_land", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
-                                    + URLEncoder.encode("irrigation_source", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("irrigated_percentage", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
-                                    + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
-
-
-
-
-
-                }
-
-                else if(type.equals("crop_cultivation"))
+                if(type.equals("crop_cultivation"))
                 {
                     post_data =
                             URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(voids[0], "UTF-8") + "&"
@@ -149,7 +71,9 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("ttl_expenditure", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8") + "&"
                                     + URLEncoder.encode("cultivation_cost", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8") + "&"
                                     + URLEncoder.encode("net_income", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8") ;
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[12], "UTF-8");
 
 
 
@@ -167,7 +91,9 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
                                     + URLEncoder.encode("cost", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("net_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") ;
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8");
 
 
 
@@ -193,7 +119,9 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("net_annual", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8")
                                     + "&"
 
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8") ;
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[11], "UTF-8");
 
 
 
@@ -214,7 +142,9 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
                                     + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") ;
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8");
 
 
 
@@ -229,12 +159,9 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("duration", "UTF-8") + "=" + URLEncoder.encode(voids[3], "UTF-8") + "&"
                                     + URLEncoder.encode("institute", "UTF-8") + "=" + URLEncoder.encode(voids[4], "UTF-8") + "&"
                                     + URLEncoder.encode("annual_income", "UTF-8") + "=" + URLEncoder.encode(voids[5], "UTF-8") + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8") ;
-
-
-
-
-
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[6], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8");
 
                 }
                 else if(type.equals("enterprise_details"))
@@ -251,28 +178,30 @@ public class Familytable extends AsyncTask<String,Void,String> {
                                     + URLEncoder.encode("reg_status", "UTF-8") + "=" + URLEncoder.encode(voids[7], "UTF-8") + "&"
                                     + URLEncoder.encode("bsl_ent", "UTF-8") + "=" + URLEncoder.encode(voids[8], "UTF-8")
                                     + "&"
-                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8") ;
+                                    + URLEncoder.encode("family_id", "UTF-8") + "=" + URLEncoder.encode(voids[9], "UTF-8")
+                                    + "&"
+                                    + URLEncoder.encode("entry_id", "UTF-8") + "=" + URLEncoder.encode(voids[10], "UTF-8");
 
                 }
 
                 bufferedWriter.write(post_data);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                    outputStream.close();
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
 
 
-                    inputStream = httpURLConnection.getInputStream();
-                     bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                     result = "";
-                     line = "";
-                    while ((line = bufferedReader.readLine()) != null) {
-                        result += line;
+                inputStream = httpURLConnection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                result = "";
+                line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
 
 
-                    }
+                }
 
-                    bufferedReader.close();
-                    inputStream.close();
+                bufferedReader.close();
+                inputStream.close();
 
                 return  result;
             }catch (Exception e)
@@ -293,6 +222,7 @@ public class Familytable extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
+
         String s1="false",s2="true";
         if(s1.compareTo(result)==0){
             new StyleableToast
@@ -308,13 +238,14 @@ public class Familytable extends AsyncTask<String,Void,String> {
 
             new StyleableToast
                     .Builder(context)
-                    .text("Data Added!")
+                    .text("Data Updated!")
                     .textColor(Color.WHITE)
                     .backgroundColor(Color.BLUE).iconStart(getIcon())
                     .show();
 
 
         }
+
 
         // alertDialog.setMessage(result);
         //alertDialog.show();

@@ -16,21 +16,29 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.mj.agritech.Dialoges.AgrialliedDialog;
+import com.mj.agritech.Dialoges.Alliedintervention;
 import com.mj.agritech.Dialoges.CropCultivationDialog;
+import com.mj.agritech.Dialoges.Cropintervention;
 import com.mj.agritech.Dialoges.DailyWageDialoge;
 import com.mj.agritech.Dialoges.EnterpriseDetailsDialog;
+import com.mj.agritech.Dialoges.Enterpriseintervention;
 import com.mj.agritech.Dialoges.FamilymemberDialog;
 import com.mj.agritech.Dialoges.GeneralInfoDialog;
 import com.mj.agritech.Dialoges.IncomeDetailsDialog;
 import com.mj.agritech.Dialoges.LandHolding;
 import com.mj.agritech.Dialoges.SkillMappingdialog;
+import com.mj.agritech.Dialoges.dailywageintervention;
 import com.mj.agritech.Dialoges.livestockDialog;
+import com.mj.agritech.Dialoges.livestockintervention;
 import com.mj.agritech.Dialoges.locationdialog;
+import com.mj.agritech.Dialoges.skillmappingintervention;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mj.agritech.Baseline.baseline_intervention;
 
 public class showdataadapter extends BaseAdapter implements ListAdapter {
     private List<String> list,list1 ;
@@ -100,131 +108,205 @@ public showdataadapter(List<String> list,Context context,int position1,FragmentM
                 showjsonarray=jsonArray;
                 mainposition=position;
                fm.popBackStackImmediate();
-                if(position1==0){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if(prev != null) {
-                        ft.remove(prev);
+                if(baseline_intervention==0) {
+                    if (position1 == 0) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
 
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new locationdialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new locationdialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
-                }
-                if(position1==1){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                    if (position1 == 1) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new GeneralInfoDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new GeneralInfoDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");}
 
-                if(position1==2){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                    if (position1 == 2) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new FamilymemberDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new FamilymemberDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");}
-                if(position1==3){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
-                    }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new IncomeDetailsDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
+                    if (position1 == 3) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new IncomeDetailsDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
 
-                    // dialogFragment = new IncomeDetailsDialog();
-                }
-                if(position1==4){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                        // dialogFragment = new IncomeDetailsDialog();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new LandHolding(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
-                    //    dialogFragment = new LandHolding();
-                }
-                if(position1==5){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                    if (position1 == 4) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new LandHolding(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new LandHolding();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new CropCultivationDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
-                    //    dialogFragment = new CropCultivationDialog();
-                }
-                if(position1==6){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                    if (position1 == 5) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new CropCultivationDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new CropCultivationDialog();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new livestockDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
+                    if (position1 == 6) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new livestockDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
 
-                    //    dialogFragment = new livestockDialog();
-                }
-                if(position1==7){
-
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                        //    dialogFragment = new livestockDialog();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new AgrialliedDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
+                    if (position1 == 7) {
 
-                    //    dialogFragment = new AgrialliedDialog();
-                }
-                if(position1==8){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new AgrialliedDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+
+                        //    dialogFragment = new AgrialliedDialog();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID,2013+"",list1,fm);
-                    dialogFragment.show(ft, "dialog");
-                    //    dialogFragment = new DailyWageDialoge();
-                }
-                if(position1==9){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                    if (position1 == 8) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new DailyWageDialoge(FAMILY_ID, 2013 + "", list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new DailyWageDialoge();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID,2012+"",list1,fm);
-                    dialogFragment.show(ft, "dialog");
+                    if (position1 == 9) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new SkillMappingdialog(FAMILY_ID, 2012 + "", list1, fm);
+                        dialogFragment.show(ft, "dialog");
 
-                    //    dialogFragment = new SkillMappingdialog();
-                }
-                if(position1==10){
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Fragment prev = fm.findFragmentByTag("dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                        //    dialogFragment = new SkillMappingdialog();
                     }
-                    ft.addToBackStack(null);
-                    DialogFragment dialogFragment = new EnterpriseDetailsDialog(FAMILY_ID,list1,fm);
-                    dialogFragment.show(ft, "dialog");
-                    //    dialogFragment = new EnterpriseDetailsDialog();
+                    if (position1 == 10) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new EnterpriseDetailsDialog(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new EnterpriseDetailsDialog();
+                    }
+
+                }else if(baseline_intervention==1)
+                {
+
+                    if (position1 == 0) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new Cropintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                    }
+                    if (position1 == 1) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new livestockintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                    }
+
+                    if (position1 == 2) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new Alliedintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                    }
+                    if (position1 == 3) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new dailywageintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+
+                        // dialogFragment = new IncomeDetailsDialog();
+                    }
+                    if (position1 == 4) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new skillmappingintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new LandHolding();
+                    }
+                    if (position1 == 5) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        Fragment prev = fm.findFragmentByTag("dialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
+                        DialogFragment dialogFragment = new Enterpriseintervention(FAMILY_ID, list1, fm);
+                        dialogFragment.show(ft, "dialog");
+                        //    dialogFragment = new CropCultivationDialog();
+                    }
+                    
+
                 }
-
-
 
 
               //  notifyDataSetChanged();

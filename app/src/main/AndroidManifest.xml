@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.mj.agritech.Baseline"></activity>
-        <activity android:name="com.mj.agritech.Interventionclass"></activity>
         <activity android:name="com.mj.agritech.ContainerActivity">
+
+        </activity>
+        <activity android:name=".Intervention">
 
         </activity>
         <activity

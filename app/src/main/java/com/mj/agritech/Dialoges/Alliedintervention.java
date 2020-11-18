@@ -12,20 +12,36 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
 import com.mj.agritech.interventiondata;
+import com.mj.agritech.updateintervention;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
+
 public class Alliedintervention extends DialogFragment {
     String FAMILY_ID,year;
     Button submitquery;
-    public Alliedintervention(String FAMILY_ID,String year)
+    int entry_id;
+    List<String> list1;
+    FragmentManager fm;
+
+    public Alliedintervention(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
-        this.year=year;
+        this.list1=list1;
+        this.fm=fm;
 
     }
 
@@ -49,10 +65,7 @@ public class Alliedintervention extends DialogFragment {
         Netannual=v.findViewById(R.id.alliednetannual);
         submitquery=v.findViewById(R.id.submitlocation);
         ammountintervention=v.findViewById(R.id.ammountintervention);
-
         final Spinner spinner1 = v.findViewById(R.id.alliedactivity);
-
-
         spinner1.setPrompt("Allied Activity");
 
         final List<String> list = new ArrayList<String>();
@@ -71,6 +84,28 @@ public class Alliedintervention extends DialogFragment {
 
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(myAdapter);
+        if(list1.size()>0)
+        {
+
+
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+                Nameintervention.setText(obj.getString("intv_name"));
+                Cityintervention.setText(obj.getString("intv_qty"));
+                Unitintervention.setText(obj.getString("intv_unit"));
+                Areaundercultivation.setText(obj.getString("area"));
+                Production.setText(obj.getString("production"));
+                Annualincome.setText(obj.getString("ann_income"));
+                Annualexp.setText(obj.getString("ann_exp"));
+                Netannual.setText(obj.getString("net_annual"));
+               // entry_id=obj.getInt("entry_id");
+                int spinnerPosition = myAdapter.getPosition(obj.getString("type"));
+                spinner1.setSelection(spinnerPosition);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+ }
         Annualexp.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -106,16 +141,36 @@ public class Alliedintervention extends DialogFragment {
                 String a=   spinner1.getSelectedItem().toString();
                 String type = "allied";
 
+                if(list1.size()>0)
+                {
+                    updateintervention updateBackground = new updateintervention (getContext(), v);
+                    updateBackground.execute(type, a, Nameintervention.getText().toString(),
+                            Cityintervention.getText().toString(), Unitintervention.getText().toString(),
+                            Areaundercultivation.getText().toString(), Production.getText().toString(),
+                            Annualincome.getText().toString(),
+                            Annualexp.getText().toString(), Netannual.getText().toString(),
+                            FAMILY_ID,entry_id+"");
+                    fm.popBackStackImmediate();
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    list1.clear();
+
+                }
+                else {
 
 
-                interventiondata interventiondata = new interventiondata(getContext());
-                interventiondata.execute(type, a,Nameintervention.getText().toString(),
-                        Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
-                        Areaundercultivation.getText().toString(),Production.getText().toString(),
-                        Annualincome.getText().toString(),
-                        Annualexp.getText().toString(),Netannual.getText().toString(),
-                        year, ammountintervention.getText().toString(),
-                        FAMILY_ID);
+                    interventiondata interventiondata = new interventiondata(getContext());
+                    interventiondata.execute(type, a,Nameintervention.getText().toString(),
+                            Cityintervention.getText().toString(),Unitintervention.getText().toString() ,
+                            Areaundercultivation.getText().toString(),Production.getText().toString(),
+                            Annualincome.getText().toString(),
+                            Annualexp.getText().toString(),Netannual.getText().toString(),
+                            year, ammountintervention.getText().toString(),
+                            FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
+
+
 
             }
         });

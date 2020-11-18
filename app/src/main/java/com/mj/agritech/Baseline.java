@@ -10,10 +10,13 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mj.agritech.SearchBackground.allfarmers;
 
 public class Baseline extends AppCompatActivity {
 RecyclerView recyclerView;
@@ -21,6 +24,7 @@ public List<String> baselinelist;
 baselineadapter baselineadapter;
 private TextView name,id;
 public String FAMILY_ID,FARMER_NAME;
+public static int baseline_intervention;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,13 @@ public String FAMILY_ID,FARMER_NAME;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+      toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+       finish();
+      }
+     });
+       baseline_intervention=0;
         recyclerView=findViewById(R.id.recyclerview2);
         name=findViewById(R.id.Name);
         id=findViewById(R.id.id);

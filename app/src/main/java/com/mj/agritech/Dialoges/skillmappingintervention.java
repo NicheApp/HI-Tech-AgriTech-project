@@ -8,21 +8,38 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.mj.agritech.Familytable;
 import com.mj.agritech.R;
+import com.mj.agritech.UpdateBackground;
 import com.mj.agritech.interventiondata;
+import com.mj.agritech.updateintervention;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
+import static com.mj.agritech.showdataadapter.mainposition;
+import static com.mj.agritech.showdataadapter.showjsonarray;
 
 public class skillmappingintervention extends DialogFragment {
     EditText nameoftheperson,professional,training,institute,annualincome;
     String FAMILY_ID,year;
     Button submitquery;
-    public skillmappingintervention(String FAMILY_ID,String year)
+    List<String> list1;
+    int entry_id;
+    FragmentManager fm;
+
+    public skillmappingintervention(String FAMILY_ID, List<String> list1, FragmentManager fm)
     {
         this.FAMILY_ID=FAMILY_ID;
-        this.year=year;
+        this.list1=list1;
+        this.fm=fm;
 
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +58,22 @@ public class skillmappingintervention extends DialogFragment {
 
 
         // Do all the stuff to initialize your custom view
+        if(list1.size()>0)
+        {
+            try {
+                JSONObject obj = showjsonarray.getJSONObject(mainposition);
+                nameoftheperson.setText(obj.getString("name"));
+                professional.setText(obj.getString("skill"));
+                training.setText(obj.getString("duration"));
+                institute.setText(obj.getString("institute"));
+                annualincome.setText(obj.getString("annual_income"));
+                entry_id=obj.getInt("entry_id");
 
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         submitquery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +82,28 @@ public class skillmappingintervention extends DialogFragment {
 
 
                 String type = "skillmapping";
+                if(list1.size()>0)
+                {
+                    updateintervention updateBackground = new updateintervention (getContext(),v);
+                    updateBackground.execute(type,nameoftheperson.getText().toString(),
+                            professional.getText().toString(),training.getText().toString() ,
+                            institute.getText().toString(),annualincome.getText().toString(),
+                            FAMILY_ID,entry_id+"");
+                    fm.popBackStackImmediate();
+                    JSONArray emptyjson=new JSONArray();
+                    showjsonarray=emptyjson;
+                    list1.clear();
+                }else {
+                    interventiondata interventiondata = new interventiondata(getContext());
+                    interventiondata.execute(type,nameoftheperson.getText().toString(),
+                            professional.getText().toString(),training.getText().toString() ,
+                            institute.getText().toString(),annualincome.getText().toString(),
+                            year,
+                            FAMILY_ID);
+                    fm.popBackStackImmediate();
+                }
 
-                interventiondata interventiondata = new interventiondata(getContext());
-                interventiondata.execute(type,nameoftheperson.getText().toString(),
-                        professional.getText().toString(),training.getText().toString() ,
-                        institute.getText().toString(),annualincome.getText().toString(),
-                        year,
-                        FAMILY_ID);
+
 
             }
         });

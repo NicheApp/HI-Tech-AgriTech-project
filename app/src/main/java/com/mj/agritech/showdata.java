@@ -24,6 +24,7 @@ public class showdata extends DialogFragment {
     int position;
     Context ctx;
     FragmentManager fm;
+
     showdata(String s, String type, int position , Context ctx, FragmentManager fm,String Family_id)
     {
 
@@ -33,6 +34,7 @@ public class showdata extends DialogFragment {
         this.ctx=ctx;
         this.fm=fm;
         this.Family_id=Family_id;
+
 
     }
     @Override
